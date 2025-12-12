@@ -1,0 +1,28 @@
+[project]
+name = "dudoansanphambanchaytrongtuonglai"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "apscheduler>=3.11.0",
+    "catboost>=1.2.8",
+    "fastapi>=0.118.3",
+    "imbalanced-learn>=0.14.0",
+    "ipykernel>=7.0.1",
+    "joblib>=1.5.2",
+    "pandas>=2.3.3",
+    "pymysql>=1.1.2",
+    "sqlacodegen>=3.0.0",
+    "sqlalchemy>=2.0.44",
+    "uvicorn>=0.37.0",
+    "xgboost>=3.1.2",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.0.1",
+    "lightgbm>=4.6.0",
+    "pandas>=2.3.3",
+    "scikit-learn>=1.7.2",
+]

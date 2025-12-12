@@ -1,0 +1,869 @@
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
+--
+-- Host: localhost    Database: smarthome_db
+-- ------------------------------------------------------
+-- Server version	8.0.41
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `attributegroups`
+--
+
+DROP TABLE IF EXISTS `attributegroups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `attributegroups` (
+  `group_id` int NOT NULL AUTO_INCREMENT,
+  `group_name` varchar(255) NOT NULL,
+  `display_order` int DEFAULT NULL,
+  `category_id` int NOT NULL,
+  PRIMARY KEY (`group_id`),
+  KEY `fk_attributegroup_category` (`category_id`),
+  CONSTRAINT `fk_attributegroup_category` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `attributegroups`
+--
+
+LOCK TABLES `attributegroups` WRITE;
+/*!40000 ALTER TABLE `attributegroups` DISABLE KEYS */;
+INSERT INTO `attributegroups` VALUES (1,'Thông tin sản phẩm',100000,3),(2,'Mức tiêu thụ điện năng',200000,3),(3,'Khả năng lọc không khí',300000,3),(4,'Công nghệ làm lạnh',400000,3),(5,'Tiện ích',500000,3),(6,'Thông số kichthước/lắp đặt',600000,3),(7,'Tổng quan',100000,5),(8,'Mức tiêu thụ điện năng',200000,5),(9,'Công nghệ giặc',300000,5),(10,'Bảng điều khiển và tiện ích',400000,5),(11,'Thông tin lắp đặt',500000,5),(12,'Tổng quan',100000,1),(13,'Mức tiêu thụ điện năng',200000,1),(14,'Công nghệ bảo quản và làm lạnh',300000,1),(15,'Tiện ích',400000,1),(16,'Thông tin lắp đặt',500000,1),(20,'Cấu hình & Bộ nhớ',100000,4),(21,'Camera & Màn hình',200000,4),(22,'Pin & Sạc',300000,4),(23,'Tiện ích',400000,4),(24,'Thiết kế & Chất liệu',500000,4),(25,'Tổng quan sản phẩm',100000,2),(26,'Công nghệ hình ảnh',200000,2),(27,'Công nghệ âm thanh',300000,2),(28,'Công kết nối ',400000,2),(29,'Thông tin lắp đặt',500000,2),(30,'Cổng kết nối',600000,2),(31,'Thông tin lắp đặt',700000,2),(32,'Tiện ích',800000,2),(33,'Công nghệ âm thanh',900000,2);
+/*!40000 ALTER TABLE `attributegroups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `brands`
+--
+
+DROP TABLE IF EXISTS `brands`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `brands` (
+  `brand_id` int NOT NULL AUTO_INCREMENT,
+  `brand_name` varchar(255) NOT NULL,
+  `logo_url` varchar(255) DEFAULT NULL,
+  `description` text,
+  PRIMARY KEY (`brand_id`),
+  UNIQUE KEY `brand_name` (`brand_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `brands`
+--
+
+LOCK TABLES `brands` WRITE;
+/*!40000 ALTER TABLE `brands` DISABLE KEYS */;
+INSERT INTO `brands` VALUES (1,'samsung','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbrand%2Fsamsung.png?alt=media&token=b27565ec-cec4-451b-b3aa-062909a36b6c',NULL),(3,'aqua','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbrand%2F1755168524807_ed14tn30r3.png?alt=media&token=4d72b340-d9d3-4891-b3b9-3b740cdabb4d',NULL),(4,'toshiba','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbrand%2F1752981513267_xrhrdgf50kc.png?alt=media&token=fc2e3ab2-1a24-4780-bee9-abd3ec9585d8',NULL),(5,'lg','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbrand%2F1752981634886_0rnwc0mhulk.png?alt=media&token=f4aab511-579f-4294-94da-868fa7d30a98',NULL),(7,'sharp','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbrand%2F1755175803324_d03r3ycdqah.png?alt=media&token=3f6c0af4-649c-41e6-b2be-e69690a7a6a1',NULL),(8,'tlc','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbrand%2F1752989191421_ffdih54uj3l.png?alt=media&token=03ec2d3f-e594-4df4-827b-0ff326522757',NULL),(9,'hitachi','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbrand%2F1752989226004_bbpj3hh5gqa.png?alt=media&token=fca9af12-9cef-4305-9bd5-081d274a6e65',NULL),(10,'misubishis','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbrand%2F1752989423363_kk2h10usd5c.png?alt=media&token=ae7a12cb-b213-42fc-a4fa-3248fe61361d',NULL),(11,'AUX','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbrand%2F1753251728608_9zvylvmo23p.png?alt=media&token=5ef26406-75fb-4507-96f9-b0a26ad32074',NULL),(12,'sony','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbrand%2F1755293746833_5v6wkxqcl03.png?alt=media&token=8d03451b-b20a-4835-a994-b83ae1cfe96d',NULL),(13,'apple','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbrand%2F1755602059897_lsdte1igeg.jpg?alt=media&token=7dca3cf1-990b-4651-b392-b744ddeb6ce4',NULL);
+/*!40000 ALTER TABLE `brands` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cartitems`
+--
+
+DROP TABLE IF EXISTS `cartitems`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cartitems` (
+  `cart_item_id` int NOT NULL AUTO_INCREMENT,
+  `cart_id` int NOT NULL,
+  `variant_id` int NOT NULL,
+  `quantity` int NOT NULL DEFAULT '1',
+  `price` decimal(10,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`cart_item_id`),
+  KEY `fk_cart_items_variant_id` (`variant_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=179 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cartitems`
+--
+
+LOCK TABLES `cartitems` WRITE;
+/*!40000 ALTER TABLE `cartitems` DISABLE KEYS */;
+INSERT INTO `cartitems` VALUES (37,18,38,1,8490000.00,'2025-07-26 18:27:37','2025-07-26 18:27:37'),(38,18,38,1,9280000.00,'2025-07-26 18:27:43','2025-07-26 18:27:43'),(39,19,40,1,18540000.00,'2025-07-26 18:29:45','2025-07-26 18:29:45'),(40,19,40,1,20040000.00,'2025-07-26 18:29:46','2025-07-26 18:29:46'),(41,19,40,1,17590000.00,'2025-07-26 18:29:50','2025-07-26 18:29:50'),(42,20,35,1,6990000.00,'2025-07-26 18:32:15','2025-07-26 18:32:15'),(43,20,36,1,7890000.00,'2025-07-26 18:32:19','2025-07-26 18:32:19'),(44,21,36,2,7890000.00,'2025-07-26 18:32:35','2025-07-26 18:32:36'),(45,22,37,1,7490000.00,'2025-07-26 18:55:26','2025-07-26 18:55:26'),(46,22,39,1,14690000.00,'2025-07-26 18:55:29','2025-07-26 18:55:29'),(47,23,39,1,16090000.00,'2025-07-26 18:56:57','2025-07-26 18:56:57'),(48,23,35,1,6990000.00,'2025-07-26 18:57:27','2025-07-26 18:57:27'),(49,24,47,1,5900000.00,'2025-07-26 19:38:52','2025-07-26 19:38:52'),(50,24,35,1,6490000.00,'2025-07-26 19:39:13','2025-07-26 19:39:13'),(51,25,49,2,7090000.00,'2025-07-26 19:39:37','2025-07-26 19:39:37'),(52,25,38,1,9380000.00,'2025-07-26 19:39:53','2025-07-26 19:39:53'),(53,25,39,1,15590000.00,'2025-07-26 19:39:59','2025-07-26 19:39:59'),(54,26,49,2,6490000.00,'2025-07-26 19:41:01','2025-07-26 19:41:02'),(55,26,49,1,7090000.00,'2025-07-26 19:41:05','2025-07-26 19:41:05'),(56,27,37,1,7590000.00,'2025-07-26 19:41:38','2025-07-26 19:41:38'),(57,27,35,1,6990000.00,'2025-07-26 19:41:49','2025-07-26 19:41:49'),(58,27,36,1,7890000.00,'2025-07-26 19:41:51','2025-07-26 19:41:51'),(60,29,37,1,7590000.00,'2025-07-31 06:28:11','2025-07-31 06:28:11'),(61,29,39,1,16690000.00,'2025-07-31 06:28:14','2025-07-31 06:28:14'),(62,29,39,1,15590000.00,'2025-07-31 06:28:19','2025-07-31 06:28:19'),(63,29,38,1,8590000.00,'2025-08-01 16:46:34','2025-08-01 16:46:34'),(73,30,39,1,16690000.00,'2025-08-07 12:26:14','2025-08-07 12:37:47'),(74,32,49,1,6490000.00,'2025-08-08 07:41:39','2025-08-08 07:41:39'),(75,33,52,1,6490000.00,'2025-08-08 07:42:33','2025-08-08 07:42:33'),(76,34,50,1,12990000.00,'2025-08-08 07:44:27','2025-08-08 07:44:27'),(77,35,50,1,12990000.00,'2025-08-08 07:47:47','2025-08-08 07:47:47'),(78,36,52,1,6490000.00,'2025-08-08 07:48:55','2025-08-08 07:48:55'),(79,37,50,1,12990000.00,'2025-08-08 07:50:58','2025-08-08 07:50:58'),(82,38,53,15,5990000.00,'2025-08-09 10:17:50','2025-08-09 10:17:56'),(85,40,37,1,6590000.00,'2025-08-09 10:47:03','2025-08-09 10:47:03'),(86,41,52,1,6490000.00,'2025-08-09 10:47:57','2025-08-09 10:47:57'),(87,42,39,1,14690000.00,'2025-08-09 10:50:29','2025-08-09 10:50:29'),(90,43,56,1,32000000.00,'2025-08-10 09:45:17','2025-08-10 09:45:17'),(91,44,53,1,25990000.00,'2025-08-10 09:51:54','2025-08-10 09:51:54'),(92,45,50,1,12990000.00,'2025-08-10 09:52:20','2025-08-10 09:52:20'),(97,48,58,2,12590000.00,'2025-08-10 23:54:54','2025-08-10 23:54:55'),(102,51,40,1,19140000.00,'2025-08-11 03:47:53','2025-08-11 03:47:53'),(106,53,37,1,7490000.00,'2025-08-13 04:14:22','2025-08-13 04:14:22'),(107,52,37,3,7780000.00,'2025-08-13 04:16:28','2025-08-15 13:10:37'),(109,55,53,1,5990000.00,'2025-08-15 13:27:22','2025-08-15 13:27:22'),(110,56,52,1,6490000.00,'2025-08-15 14:23:35','2025-08-15 14:23:35'),(112,57,58,1,12590000.00,'2025-08-15 15:24:35','2025-08-15 15:24:35'),(115,58,52,1,6490000.00,'2025-08-15 15:35:46','2025-08-15 15:35:46'),(116,59,52,1,16490000.00,'2025-08-15 15:36:53','2025-08-15 15:36:53'),(117,60,52,1,6490000.00,'2025-08-16 03:01:01','2025-08-16 03:01:01'),(118,61,53,1,5990000.00,'2025-08-16 03:34:38','2025-08-16 03:34:38'),(119,62,58,1,12590000.00,'2025-08-16 05:28:38','2025-08-16 05:28:38'),(123,54,53,1,5990000.00,'2025-08-16 08:40:26','2025-08-16 08:40:26'),(124,64,52,1,6490000.00,'2025-08-16 08:45:21','2025-08-16 08:45:21'),(125,65,52,1,6490000.00,'2025-08-16 08:50:08','2025-08-16 08:50:08'),(164,68,64,1,5088000.00,'2025-08-19 09:03:35','2025-08-19 09:03:35'),(168,66,37,1,6590000.00,'2025-08-20 02:55:40','2025-08-20 02:55:40');
+/*!40000 ALTER TABLE `cartitems` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cartitemservices`
+--
+
+DROP TABLE IF EXISTS `cartitemservices`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cartitemservices` (
+  `cart_item_service_id` int NOT NULL AUTO_INCREMENT,
+  `cart_item_id` int NOT NULL,
+  `package_service_item_id` int NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`cart_item_service_id`),
+  UNIQUE KEY `uc_cart_item_package_service_item` (`cart_item_id`,`package_service_item_id`),
+  KEY `fk_cart_item_services_package_service_item_id` (`package_service_item_id`),
+  CONSTRAINT `fk_cart_item_services_cart_item_id` FOREIGN KEY (`cart_item_id`) REFERENCES `cartitems` (`cart_item_id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_cart_item_services_package_service_item_id` FOREIGN KEY (`package_service_item_id`) REFERENCES `packageserviceitems` (`package_service_item_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=341 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cartitemservices`
+--
+
+LOCK TABLES `cartitemservices` WRITE;
+/*!40000 ALTER TABLE `cartitemservices` DISABLE KEYS */;
+INSERT INTO `cartitemservices` VALUES (95,37,54,550000.00,'2025-07-26 18:27:37','2025-07-26 18:27:37'),(96,37,55,350000.00,'2025-07-26 18:27:37','2025-07-26 18:27:37'),(97,38,63,640000.00,'2025-07-26 18:27:43','2025-07-26 18:27:43'),(98,38,62,200000.00,'2025-07-26 18:27:43','2025-07-26 18:27:43'),(99,38,59,500000.00,'2025-07-26 18:27:43','2025-07-26 18:27:43'),(100,38,58,350000.00,'2025-07-26 18:27:43','2025-07-26 18:27:43'),(101,39,77,600000.00,'2025-07-26 18:29:45','2025-07-26 18:29:45'),(102,39,76,350000.00,'2025-07-26 18:29:45','2025-07-26 18:29:45'),(103,40,83,75000.00,'2025-07-26 18:29:46','2025-07-26 18:29:46'),(104,40,85,400000.00,'2025-07-26 18:29:46','2025-07-26 18:29:46'),(105,40,80,350000.00,'2025-07-26 18:29:46','2025-07-26 18:29:46'),(106,40,82,75000.00,'2025-07-26 18:29:46','2025-07-26 18:29:46'),(107,40,84,800000.00,'2025-07-26 18:29:46','2025-07-26 18:29:46'),(108,40,81,750000.00,'2025-07-26 18:29:46','2025-07-26 18:29:46'),(109,41,75,0.00,'2025-07-26 18:29:50','2025-07-26 18:29:50'),(110,42,39,500000.00,'2025-07-26 18:32:15','2025-07-26 18:32:15'),(111,43,40,0.00,'2025-07-26 18:32:19','2025-07-26 18:32:19'),(112,44,40,0.00,'2025-07-26 18:32:35','2025-07-26 18:32:35'),(113,45,43,550000.00,'2025-07-26 18:55:26','2025-07-26 18:55:26'),(114,45,44,350000.00,'2025-07-26 18:55:26','2025-07-26 18:55:26'),(115,46,64,0.00,'2025-07-26 18:55:29','2025-07-26 18:55:29'),(116,47,69,350000.00,'2025-07-26 18:56:57','2025-07-26 18:56:57'),(117,47,74,700000.00,'2025-07-26 18:56:57','2025-07-26 18:56:57'),(118,47,72,50000.00,'2025-07-26 18:56:57','2025-07-26 18:56:57'),(119,47,73,300000.00,'2025-07-26 18:56:57','2025-07-26 18:56:57'),(120,48,39,500000.00,'2025-07-26 18:57:27','2025-07-26 18:57:27'),(121,49,86,0.00,'2025-07-26 19:38:52','2025-07-26 19:38:52'),(122,50,38,0.00,'2025-07-26 19:39:13','2025-07-26 19:39:13'),(123,51,91,600000.00,'2025-07-26 19:39:37','2025-07-26 19:39:37'),(124,52,63,640000.00,'2025-07-26 19:39:53','2025-07-26 19:39:53'),(125,52,62,200000.00,'2025-07-26 19:39:53','2025-07-26 19:39:53'),(126,52,59,500000.00,'2025-07-26 19:39:53','2025-07-26 19:39:53'),(127,52,58,350000.00,'2025-07-26 19:39:53','2025-07-26 19:39:53'),(128,52,60,50000.00,'2025-07-26 19:39:53','2025-07-26 19:39:53'),(129,52,61,50000.00,'2025-07-26 19:39:53','2025-07-26 19:39:53'),(130,53,67,550000.00,'2025-07-26 19:39:59','2025-07-26 19:39:59'),(131,53,65,350000.00,'2025-07-26 19:39:59','2025-07-26 19:39:59'),(132,54,90,0.00,'2025-07-26 19:41:01','2025-07-26 19:41:01'),(133,55,91,600000.00,'2025-07-26 19:41:05','2025-07-26 19:41:05'),(134,56,43,550000.00,'2025-07-26 19:41:38','2025-07-26 19:41:38'),(135,56,44,350000.00,'2025-07-26 19:41:38','2025-07-26 19:41:38'),(136,56,45,50000.00,'2025-07-26 19:41:38','2025-07-26 19:41:38'),(137,56,46,50000.00,'2025-07-26 19:41:38','2025-07-26 19:41:38'),(138,57,39,500000.00,'2025-07-26 19:41:49','2025-07-26 19:41:49'),(139,58,40,0.00,'2025-07-26 19:41:51','2025-07-26 19:41:51'),(142,60,43,550000.00,'2025-07-31 06:28:11','2025-07-31 06:28:11'),(143,60,44,350000.00,'2025-07-31 06:28:11','2025-07-31 06:28:11'),(144,60,45,50000.00,'2025-07-31 06:28:11','2025-07-31 06:28:11'),(145,60,46,50000.00,'2025-07-31 06:28:11','2025-07-31 06:28:11'),(146,61,70,550000.00,'2025-07-31 06:28:14','2025-07-31 06:28:14'),(147,61,69,350000.00,'2025-07-31 06:28:14','2025-07-31 06:28:14'),(148,61,71,50000.00,'2025-07-31 06:28:14','2025-07-31 06:28:14'),(149,61,74,700000.00,'2025-07-31 06:28:14','2025-07-31 06:28:14'),(150,61,72,50000.00,'2025-07-31 06:28:14','2025-07-31 06:28:14'),(151,61,73,300000.00,'2025-07-31 06:28:14','2025-07-31 06:28:14'),(152,62,67,550000.00,'2025-07-31 06:28:19','2025-07-31 06:28:19'),(153,62,65,350000.00,'2025-07-31 06:28:19','2025-07-31 06:28:19'),(154,63,54,550000.00,'2025-08-01 16:46:34','2025-08-01 16:46:34'),(155,63,55,350000.00,'2025-08-01 16:46:34','2025-08-01 16:46:34'),(156,63,57,50000.00,'2025-08-01 16:46:34','2025-08-01 16:46:34'),(157,63,56,50000.00,'2025-08-01 16:46:34','2025-08-01 16:46:34'),(187,73,70,550000.00,'2025-08-07 12:26:14','2025-08-07 12:26:14'),(188,73,69,350000.00,'2025-08-07 12:26:14','2025-08-07 12:26:14'),(189,73,71,50000.00,'2025-08-07 12:26:14','2025-08-07 12:26:14'),(190,73,74,700000.00,'2025-08-07 12:26:14','2025-08-07 12:26:14'),(191,73,72,50000.00,'2025-08-07 12:26:14','2025-08-07 12:26:14'),(192,73,73,300000.00,'2025-08-07 12:26:14','2025-08-07 12:26:14'),(193,74,90,0.00,'2025-08-08 07:41:39','2025-08-08 07:41:39'),(194,75,94,0.00,'2025-08-08 07:42:33','2025-08-08 07:42:33'),(195,76,92,0.00,'2025-08-08 07:44:27','2025-08-08 07:44:27'),(196,77,92,0.00,'2025-08-08 07:47:47','2025-08-08 07:47:47'),(197,78,94,0.00,'2025-08-08 07:48:55','2025-08-08 07:48:55'),(198,79,92,0.00,'2025-08-08 07:50:58','2025-08-08 07:50:58'),(201,82,97,0.00,'2025-08-09 10:17:50','2025-08-09 10:17:50'),(209,85,42,0.00,'2025-08-09 10:47:03','2025-08-09 10:47:03'),(210,86,94,0.00,'2025-08-09 10:47:57','2025-08-09 10:47:57'),(211,87,64,0.00,'2025-08-09 10:50:29','2025-08-09 10:50:29'),(216,91,99,20000000.00,'2025-08-10 09:51:54','2025-08-10 09:51:54'),(217,91,98,0.00,'2025-08-10 09:51:54','2025-08-10 09:51:54'),(218,92,92,0.00,'2025-08-10 09:52:20','2025-08-10 09:52:20'),(229,102,85,400000.00,'2025-08-11 03:47:53','2025-08-11 03:47:53'),(230,102,80,350000.00,'2025-08-11 03:47:53','2025-08-11 03:47:53'),(231,102,84,800000.00,'2025-08-11 03:47:53','2025-08-11 03:47:53'),(238,106,43,550000.00,'2025-08-13 04:14:22','2025-08-13 04:14:22'),(239,106,44,350000.00,'2025-08-13 04:14:22','2025-08-13 04:14:22'),(240,107,51,200000.00,'2025-08-13 04:16:28','2025-08-13 04:16:28'),(241,107,47,350000.00,'2025-08-13 04:16:28','2025-08-13 04:16:28'),(242,107,52,640000.00,'2025-08-13 04:16:28','2025-08-13 04:16:28'),(244,109,97,0.00,'2025-08-15 13:27:22','2025-08-15 13:27:22'),(245,110,94,0.00,'2025-08-15 14:23:35','2025-08-15 14:23:35'),(251,115,94,0.00,'2025-08-15 15:35:46','2025-08-15 15:35:46'),(252,116,96,10000000.00,'2025-08-15 15:36:53','2025-08-15 15:36:53'),(253,116,95,0.00,'2025-08-15 15:36:53','2025-08-15 15:36:53'),(254,117,94,0.00,'2025-08-16 03:01:01','2025-08-16 03:01:01'),(255,118,97,0.00,'2025-08-16 03:34:38','2025-08-16 03:34:38'),(259,123,97,0.00,'2025-08-16 08:40:26','2025-08-16 08:40:26'),(260,124,94,0.00,'2025-08-16 08:45:21','2025-08-16 08:45:21'),(261,125,94,0.00,'2025-08-16 08:50:08','2025-08-16 08:50:08'),(320,168,42,0.00,'2025-08-20 02:55:40','2025-08-20 02:55:40');
+/*!40000 ALTER TABLE `cartitemservices` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `carts`
+--
+
+DROP TABLE IF EXISTS `carts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `carts` (
+  `cart_id` int NOT NULL AUTO_INCREMENT COMMENT 'ID tự động tăng cho giỏ hàng',
+  `user_id` int DEFAULT NULL COMMENT 'ID của người dùng nếu giỏ hàng thuộc về người dùng đã đăng nhập',
+  `session_id` varchar(255) DEFAULT NULL COMMENT 'ID của session nếu là giỏ hàng tạm thời cho khách chưa đăng nhập',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`cart_id`),
+  UNIQUE KEY `uc_user_cart` (`user_id`),
+  UNIQUE KEY `uc_session_cart` (`session_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `carts`
+--
+
+LOCK TABLES `carts` WRITE;
+/*!40000 ALTER TABLE `carts` DISABLE KEYS */;
+INSERT INTO `carts` VALUES (28,1,NULL,'2025-07-27 08:33:37','2025-07-27 08:33:37'),(47,15,NULL,'2025-08-10 11:10:20','2025-08-10 19:58:05'),(63,14,NULL,'2025-08-16 08:08:39','2025-08-16 08:08:39'),(70,2,NULL,'2025-08-20 03:11:40','2025-08-20 03:11:40'),(71,NULL,'6f1583f1-5f38-428a-91a3-269a7c0e2676','2025-09-19 00:49:50','2025-09-19 00:49:50');
+/*!40000 ALTER TABLE `carts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `categories` (
+  `category_id` int NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(255) NOT NULL,
+  `display_order` int DEFAULT NULL,
+  `slogan` text,
+  `banner` varchar(255) DEFAULT NULL,
+  `showable` tinyint(1) DEFAULT '1',
+  `icon_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`category_id`),
+  UNIQUE KEY `category_name` (`category_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `categories`
+--
+
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (1,'Tủ lạnh',100000,'Bảo quản, tươi, ngon, lành, mạnh, khỏe.','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fcategory%2FGemini_Generated_Image_y853pay853pay853.png?alt=media&token=8b30ae0f-eaa1-4852-a705-5d6a26f44c81',1,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fcategory%2Fsvgviewer-png-output.png?alt=media&token=ca27675b-e53b-4f90-93af-924ac12429ea'),(2,'Tivi',200000,'Kết nối gia đình, trò truyện yêu thương','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fcategory%2F1755170872692_6mg2uv5ywhr.png?alt=media&token=3e86a3aa-881e-41c2-b7f7-76bba8a2927c',1,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fcategory%2F1755170665204_4c3fvt83kl5.png?alt=media&token=429dff96-040e-4682-90f3-ff154bee9a3a'),(3,'Máy lạnh',300000,'Điều hòa không khí, dịu nhẹ không gian','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fcategory%2FGemini_Generated_Image_x3x7ibx3x7ibx3x7.png?alt=media&token=685f8ce6-7e98-4ba7-821c-f07f5c1b09fb',1,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fcategory%2F1755168395452_kvpx3o6fbhl.png?alt=media&token=2bb7ebe8-0d41-40e5-a9b6-34896c551d50'),(4,'Điện thoại',400000,'Kết nối vạn vật, nhỏ gọn, thôn minh, mạnh mẽ','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fcategory%2F1755171082050_7gx2ojxc43n.png?alt=media&token=e8c43d25-e405-4bc0-94f8-7acb940e6eb1',1,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fcategory%2F1755168446921_corkuhekufc.png?alt=media&token=84cbfd0d-ab17-44b0-ab95-e70a60803c74'),(5,'Máy giặc',500000,'Giặc giũ nhẹ nhàng cuộc sống thảnh thơi.','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fcategory%2F1753110752200_eqj1o343xm.png?alt=media&token=0a8edf17-7378-4a32-b6db-faab02f340af',1,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fcategory%2F1753110749797_vjo79mx4x9p.png?alt=media&token=a535e048-35fd-4959-9877-72c4dd361f1f'),(6,'Quạt',600000,'Hơi thở của gió, thổi bùng năng lượng.','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fcategory%2F1753111020985_jt95nqoiiq9.png?alt=media&token=b914df98-c72b-49a2-972e-da18e33965e0',1,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fcategory%2F1753111019595_h2z26dg0x5.png?alt=media&token=941990a3-aac4-406b-9f1d-2314dea9d422');
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `inventory_snapshots`
+--
+
+DROP TABLE IF EXISTS `inventory_snapshots`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `inventory_snapshots` (
+  `snapshot_id` bigint NOT NULL AUTO_INCREMENT,
+  `snapshot_at` datetime NOT NULL,
+  `variant_id` int DEFAULT NULL,
+  `stock_qty` int NOT NULL DEFAULT '0',
+  `stock_status` enum('in_stock','out_of_stock','preorder','backorder') NOT NULL DEFAULT 'in_stock',
+  PRIMARY KEY (`snapshot_id`),
+  KEY `variant_id` (`variant_id`),
+  CONSTRAINT `inventory_snapshots_ibfk_1` FOREIGN KEY (`variant_id`) REFERENCES `productvariants` (`variant_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `inventory_snapshots`
+--
+
+LOCK TABLES `inventory_snapshots` WRITE;
+/*!40000 ALTER TABLE `inventory_snapshots` DISABLE KEYS */;
+/*!40000 ALTER TABLE `inventory_snapshots` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `options`
+--
+
+DROP TABLE IF EXISTS `options`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `options` (
+  `option_id` int NOT NULL AUTO_INCREMENT,
+  `option_name` varchar(255) NOT NULL,
+  `is_filterable` tinyint(1) DEFAULT '0',
+  `category_id` int DEFAULT NULL,
+  PRIMARY KEY (`option_id`),
+  KEY `category_id` (`category_id`),
+  CONSTRAINT `options_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `options`
+--
+
+LOCK TABLES `options` WRITE;
+/*!40000 ALTER TABLE `options` DISABLE KEYS */;
+INSERT INTO `options` VALUES (1,'Dung tích',1,1),(4,'Kích thước màn hình',1,2),(6,'Mã lực',1,3),(7,'Màu',1,4),(8,'Bộ nhớ trong',1,4),(9,'Ram',1,4),(10,'Khối lượng',1,5),(17,'Màu',1,6),(18,'Màu',1,1),(19,'Màu',1,5);
+/*!40000 ALTER TABLE `options` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `optionvalues`
+--
+
+DROP TABLE IF EXISTS `optionvalues`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `optionvalues` (
+  `option_value_id` int NOT NULL AUTO_INCREMENT,
+  `option_id` int NOT NULL,
+  `option_value_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`option_value_id`),
+  KEY `option_id` (`option_id`),
+  CONSTRAINT `optionvalues_ibfk_1` FOREIGN KEY (`option_id`) REFERENCES `options` (`option_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `optionvalues`
+--
+
+LOCK TABLES `optionvalues` WRITE;
+/*!40000 ALTER TABLE `optionvalues` DISABLE KEYS */;
+INSERT INTO `optionvalues` VALUES (17,10,'8.5 KG'),(18,10,'9.5 KG'),(19,6,'1HP'),(20,6,'1.5HP'),(21,6,'2HP'),(22,6,'2.5HP'),(35,1,'236 lít'),(36,1,'256 lít'),(39,1,'200hp'),(40,1,'300hp'),(41,7,'Xanh'),(42,7,'Đỏ'),(43,9,'20GB'),(44,9,'30GB'),(45,4,'44 inch'),(46,4,'55 inch'),(47,4,'66 inch'),(48,1,'711 lít'),(49,1,'646 lít'),(50,1,'90 lít'),(51,1,'181 lít'),(52,18,'xám'),(53,18,'Đen'),(54,4,'32 inch'),(55,4,'65 inch'),(56,8,'128GB'),(57,8,'256GB'),(58,7,'Đen'),(59,7,'Trắng'),(60,10,'10KG'),(61,10,'20KG'),(62,19,'Trắng'),(63,19,'Đen');
+/*!40000 ALTER TABLE `optionvalues` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orderitems`
+--
+
+DROP TABLE IF EXISTS `orderitems`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `orderitems` (
+  `order_item_id` int NOT NULL AUTO_INCREMENT,
+  `order_id` int NOT NULL,
+  `variant_id` int NOT NULL,
+  `quantity` int NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `total_price` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`order_item_id`),
+  KEY `order_id` (`order_id`),
+  KEY `variant_id` (`variant_id`),
+  CONSTRAINT `orderitems_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `orderitems_ibfk_2` FOREIGN KEY (`variant_id`) REFERENCES `productvariants` (`variant_id`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orderitems`
+--
+
+LOCK TABLES `orderitems` WRITE;
+/*!40000 ALTER TABLE `orderitems` DISABLE KEYS */;
+INSERT INTO `orderitems` VALUES (8,5,38,1,8490000.00,8490000.00),(9,5,38,1,9280000.00,9280000.00),(10,6,40,1,18540000.00,18540000.00),(11,6,40,1,20040000.00,20040000.00),(12,6,40,1,17590000.00,17590000.00),(13,7,35,1,6990000.00,6990000.00),(14,7,36,1,7890000.00,7890000.00),(15,8,36,2,7890000.00,15780000.00),(16,9,37,1,7490000.00,7490000.00),(17,9,39,1,14690000.00,14690000.00),(18,10,39,1,16090000.00,16090000.00),(19,10,35,1,6990000.00,6990000.00),(20,11,47,1,5900000.00,5900000.00),(21,11,35,1,6490000.00,6490000.00),(22,12,49,2,7090000.00,14180000.00),(23,12,38,1,9380000.00,9380000.00),(24,12,39,1,15590000.00,15590000.00),(25,13,49,2,6490000.00,12980000.00),(26,13,49,1,7090000.00,7090000.00),(27,14,37,1,7590000.00,7590000.00),(28,14,35,1,6990000.00,6990000.00),(29,14,36,1,7890000.00,7890000.00),(30,15,37,1,7590000.00,7590000.00),(31,15,39,1,16690000.00,16690000.00),(32,15,39,1,15590000.00,15590000.00),(33,15,38,1,8590000.00,8590000.00),(35,16,39,1,16690000.00,16690000.00),(36,17,49,1,6490000.00,6490000.00),(37,18,52,1,6490000.00,6490000.00),(38,19,50,1,12990000.00,12990000.00),(39,20,50,1,12990000.00,12990000.00),(40,21,52,1,6490000.00,6490000.00),(41,22,50,1,12990000.00,12990000.00),(42,23,53,15,5990000.00,89850000.00),(43,24,37,1,6590000.00,6590000.00),(44,25,52,1,6490000.00,6490000.00),(45,26,39,1,14690000.00,14690000.00),(46,27,56,1,32000000.00,32000000.00),(47,28,53,1,25990000.00,25990000.00),(48,29,50,1,12990000.00,12990000.00),(52,32,40,1,19140000.00,19140000.00),(53,33,37,1,7490000.00,7490000.00),(54,34,37,3,7780000.00,23340000.00),(55,35,53,1,5990000.00,5990000.00),(56,36,52,1,6490000.00,6490000.00),(57,37,58,1,12590000.00,12590000.00),(58,38,59,1,13990000.00,13990000.00),(59,39,38,1,8590000.00,8590000.00),(60,40,52,1,6490000.00,6490000.00),(61,41,52,1,16490000.00,16490000.00),(62,42,52,1,16490000.00,16490000.00),(63,43,52,1,16490000.00,16490000.00),(64,44,52,1,16490000.00,16490000.00),(65,45,52,1,16490000.00,16490000.00),(66,46,52,1,16490000.00,16490000.00),(67,47,52,1,6490000.00,6490000.00),(68,48,53,1,5990000.00,5990000.00),(69,49,58,1,12590000.00,12590000.00),(70,50,53,1,5990000.00,5990000.00),(71,51,52,1,6490000.00,6490000.00),(72,52,52,1,6490000.00,6490000.00),(73,53,64,1,5088000.00,5088000.00),(74,54,37,1,6590000.00,6590000.00);
+/*!40000 ALTER TABLE `orderitems` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orderitemservices`
+--
+
+DROP TABLE IF EXISTS `orderitemservices`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `orderitemservices` (
+  `order_item_service_id` int NOT NULL AUTO_INCREMENT,
+  `order_item_id` int NOT NULL,
+  `package_service_item_id` int NOT NULL,
+  `price` decimal(10,2) DEFAULT '0.00',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`order_item_service_id`),
+  KEY `FK_orderserviceitem_orderitem` (`order_item_id`),
+  CONSTRAINT `FK_orderserviceitem_orderitem` FOREIGN KEY (`order_item_id`) REFERENCES `orderitems` (`order_item_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orderitemservices`
+--
+
+LOCK TABLES `orderitemservices` WRITE;
+/*!40000 ALTER TABLE `orderitemservices` DISABLE KEYS */;
+INSERT INTO `orderitemservices` VALUES (23,8,55,350000.00,'2025-07-26 18:27:53','2025-07-26 18:27:53'),(24,8,54,550000.00,'2025-07-26 18:27:53','2025-07-26 18:27:53'),(25,9,58,350000.00,'2025-07-26 18:27:53','2025-07-26 18:27:53'),(26,9,59,500000.00,'2025-07-26 18:27:53','2025-07-26 18:27:53'),(27,9,62,200000.00,'2025-07-26 18:27:53','2025-07-26 18:27:53'),(28,9,63,640000.00,'2025-07-26 18:27:53','2025-07-26 18:27:53'),(29,10,76,350000.00,'2025-07-26 18:30:04','2025-07-26 18:30:04'),(30,10,77,600000.00,'2025-07-26 18:30:04','2025-07-26 18:30:04'),(31,11,80,350000.00,'2025-07-26 18:30:04','2025-07-26 18:30:04'),(32,11,81,750000.00,'2025-07-26 18:30:04','2025-07-26 18:30:04'),(33,11,82,75000.00,'2025-07-26 18:30:04','2025-07-26 18:30:04'),(34,11,83,75000.00,'2025-07-26 18:30:04','2025-07-26 18:30:04'),(35,11,84,800000.00,'2025-07-26 18:30:04','2025-07-26 18:30:04'),(36,11,85,400000.00,'2025-07-26 18:30:04','2025-07-26 18:30:04'),(37,12,75,0.00,'2025-07-26 18:30:04','2025-07-26 18:30:04'),(38,13,39,500000.00,'2025-07-26 18:32:30','2025-07-26 18:32:30'),(39,14,40,0.00,'2025-07-26 18:32:30','2025-07-26 18:32:30'),(40,15,40,0.00,'2025-07-26 18:32:45','2025-07-26 18:32:45'),(41,16,43,550000.00,'2025-07-26 18:55:36','2025-07-26 18:55:36'),(42,16,44,350000.00,'2025-07-26 18:55:36','2025-07-26 18:55:36'),(43,17,64,0.00,'2025-07-26 18:55:36','2025-07-26 18:55:36'),(44,18,69,350000.00,'2025-07-26 18:57:34','2025-07-26 18:57:34'),(45,18,72,50000.00,'2025-07-26 18:57:34','2025-07-26 18:57:34'),(46,18,73,300000.00,'2025-07-26 18:57:34','2025-07-26 18:57:34'),(47,18,74,700000.00,'2025-07-26 18:57:34','2025-07-26 18:57:34'),(48,19,39,500000.00,'2025-07-26 18:57:34','2025-07-26 18:57:34'),(49,20,86,0.00,'2025-07-26 19:39:21','2025-07-26 19:39:21'),(50,21,38,0.00,'2025-07-26 19:39:21','2025-07-26 19:39:21'),(51,22,91,600000.00,'2025-07-26 19:40:07','2025-07-26 19:40:07'),(52,23,58,350000.00,'2025-07-26 19:40:07','2025-07-26 19:40:07'),(53,23,59,500000.00,'2025-07-26 19:40:07','2025-07-26 19:40:07'),(54,23,60,50000.00,'2025-07-26 19:40:07','2025-07-26 19:40:07'),(55,23,61,50000.00,'2025-07-26 19:40:07','2025-07-26 19:40:07'),(56,23,62,200000.00,'2025-07-26 19:40:07','2025-07-26 19:40:07'),(57,23,63,640000.00,'2025-07-26 19:40:07','2025-07-26 19:40:07'),(58,24,65,350000.00,'2025-07-26 19:40:07','2025-07-26 19:40:07'),(59,24,67,550000.00,'2025-07-26 19:40:07','2025-07-26 19:40:07'),(60,25,90,0.00,'2025-07-26 19:41:14','2025-07-26 19:41:14'),(61,26,91,600000.00,'2025-07-26 19:41:14','2025-07-26 19:41:14'),(62,27,43,550000.00,'2025-07-26 19:41:59','2025-07-26 19:41:59'),(63,27,44,350000.00,'2025-07-26 19:41:59','2025-07-26 19:41:59'),(64,27,45,50000.00,'2025-07-26 19:41:59','2025-07-26 19:41:59'),(65,27,46,50000.00,'2025-07-26 19:41:59','2025-07-26 19:41:59'),(66,28,39,500000.00,'2025-07-26 19:41:59','2025-07-26 19:41:59'),(67,29,40,0.00,'2025-07-26 19:41:59','2025-07-26 19:41:59'),(68,30,43,550000.00,'2025-08-01 16:46:47','2025-08-01 16:46:47'),(69,30,44,350000.00,'2025-08-01 16:46:47','2025-08-01 16:46:47'),(70,30,45,50000.00,'2025-08-01 16:46:47','2025-08-01 16:46:47'),(71,30,46,50000.00,'2025-08-01 16:46:47','2025-08-01 16:46:47'),(72,31,69,350000.00,'2025-08-01 16:46:47','2025-08-01 16:46:47'),(73,31,70,550000.00,'2025-08-01 16:46:47','2025-08-01 16:46:47'),(74,31,71,50000.00,'2025-08-01 16:46:47','2025-08-01 16:46:47'),(75,31,72,50000.00,'2025-08-01 16:46:47','2025-08-01 16:46:47'),(76,31,73,300000.00,'2025-08-01 16:46:47','2025-08-01 16:46:47'),(77,31,74,700000.00,'2025-08-01 16:46:47','2025-08-01 16:46:47'),(78,32,65,350000.00,'2025-08-01 16:46:47','2025-08-01 16:46:47'),(79,32,67,550000.00,'2025-08-01 16:46:47','2025-08-01 16:46:47'),(80,33,54,550000.00,'2025-08-01 16:46:47','2025-08-01 16:46:47'),(81,33,55,350000.00,'2025-08-01 16:46:47','2025-08-01 16:46:47'),(82,33,56,50000.00,'2025-08-01 16:46:47','2025-08-01 16:46:47'),(83,33,57,50000.00,'2025-08-01 16:46:47','2025-08-01 16:46:47'),(85,35,69,350000.00,'2025-08-08 07:40:48','2025-08-08 07:40:48'),(86,35,70,550000.00,'2025-08-08 07:40:48','2025-08-08 07:40:48'),(87,35,71,50000.00,'2025-08-08 07:40:48','2025-08-08 07:40:48'),(88,35,72,50000.00,'2025-08-08 07:40:48','2025-08-08 07:40:48'),(89,35,73,300000.00,'2025-08-08 07:40:48','2025-08-08 07:40:48'),(90,35,74,700000.00,'2025-08-08 07:40:48','2025-08-08 07:40:48'),(91,36,90,0.00,'2025-08-08 07:41:42','2025-08-08 07:41:42'),(92,37,94,0.00,'2025-08-08 07:42:38','2025-08-08 07:42:38'),(93,38,92,0.00,'2025-08-08 07:44:30','2025-08-08 07:44:30'),(94,39,92,0.00,'2025-08-08 07:47:50','2025-08-08 07:47:50'),(95,40,94,0.00,'2025-08-08 07:49:10','2025-08-08 07:49:10'),(96,41,92,0.00,'2025-08-08 07:51:02','2025-08-08 07:51:02'),(97,42,97,0.00,'2025-08-09 10:17:58','2025-08-09 10:17:58'),(98,43,42,0.00,'2025-08-09 10:47:20','2025-08-09 10:47:20'),(99,44,94,0.00,'2025-08-09 10:50:05','2025-08-09 10:50:05'),(100,45,64,0.00,'2025-08-09 10:50:46','2025-08-09 10:50:46'),(101,47,98,0.00,'2025-08-10 09:52:02','2025-08-10 09:52:02'),(102,47,99,20000000.00,'2025-08-10 09:52:02','2025-08-10 09:52:02'),(103,48,92,0.00,'2025-08-10 10:00:36','2025-08-10 10:00:36'),(107,52,80,350000.00,'2025-08-11 03:48:30','2025-08-11 03:48:30'),(108,52,84,800000.00,'2025-08-11 03:48:30','2025-08-11 03:48:30'),(109,52,85,400000.00,'2025-08-11 03:48:30','2025-08-11 03:48:30'),(110,53,43,550000.00,'2025-08-13 04:14:29','2025-08-13 04:14:29'),(111,53,44,350000.00,'2025-08-13 04:14:29','2025-08-13 04:14:29'),(112,54,47,350000.00,'2025-08-15 13:22:18','2025-08-15 13:22:18'),(113,54,51,200000.00,'2025-08-15 13:22:18','2025-08-15 13:22:18'),(114,54,52,640000.00,'2025-08-15 13:22:18','2025-08-15 13:22:18'),(115,55,97,0.00,'2025-08-15 14:03:56','2025-08-15 14:03:56'),(116,56,94,0.00,'2025-08-15 14:26:52','2025-08-15 14:26:52'),(117,59,54,550000.00,'2025-08-15 15:30:40','2025-08-15 15:30:40'),(118,59,55,350000.00,'2025-08-15 15:30:40','2025-08-15 15:30:40'),(119,59,56,50000.00,'2025-08-15 15:30:40','2025-08-15 15:30:40'),(120,59,57,50000.00,'2025-08-15 15:30:40','2025-08-15 15:30:40'),(121,60,94,0.00,'2025-08-15 15:36:00','2025-08-15 15:36:00'),(122,61,95,0.00,'2025-08-15 15:37:14','2025-08-15 15:37:14'),(123,61,96,10000000.00,'2025-08-15 15:37:14','2025-08-15 15:37:14'),(124,62,95,0.00,'2025-08-15 15:39:10','2025-08-15 15:39:10'),(125,62,96,10000000.00,'2025-08-15 15:39:10','2025-08-15 15:39:10'),(126,63,95,0.00,'2025-08-15 15:46:16','2025-08-15 15:46:16'),(127,63,96,10000000.00,'2025-08-15 15:46:16','2025-08-15 15:46:16'),(128,64,95,0.00,'2025-08-15 15:53:09','2025-08-15 15:53:09'),(129,64,96,10000000.00,'2025-08-15 15:53:09','2025-08-15 15:53:09'),(130,65,95,0.00,'2025-08-15 15:58:54','2025-08-15 15:58:54'),(131,65,96,10000000.00,'2025-08-15 15:58:54','2025-08-15 15:58:54'),(132,66,95,0.00,'2025-08-15 16:06:14','2025-08-15 16:06:14'),(133,66,96,10000000.00,'2025-08-15 16:06:14','2025-08-15 16:06:14'),(134,67,94,0.00,'2025-08-16 03:27:53','2025-08-16 03:27:53'),(135,68,97,0.00,'2025-08-16 03:34:56','2025-08-16 03:34:56'),(136,70,97,0.00,'2025-08-16 08:40:55','2025-08-16 08:40:55'),(137,71,94,0.00,'2025-08-16 08:49:18','2025-08-16 08:49:18'),(138,72,94,0.00,'2025-08-16 08:50:15','2025-08-16 08:50:15'),(139,74,42,0.00,'2025-08-20 02:55:45','2025-08-20 02:55:45');
+/*!40000 ALTER TABLE `orderitemservices` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `orders` (
+  `order_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `session_id` varchar(255) DEFAULT NULL,
+  `guest_email` varchar(255) DEFAULT NULL,
+  `guest_name` varchar(255) DEFAULT NULL,
+  `guest_phone` varchar(20) DEFAULT NULL,
+  `guest_province` varchar(255) DEFAULT NULL,
+  `guest_district` varchar(255) DEFAULT NULL,
+  `guest_house_number` text,
+  `order_total` decimal(10,2) DEFAULT NULL,
+  `order_status` varchar(50) NOT NULL DEFAULT 'pending',
+  `payment_method` varchar(50) DEFAULT NULL,
+  `payment_status` varchar(50) DEFAULT 'unpaid',
+  `notes` text,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`order_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (5,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,17770000.00,'completed','traditional','paid',NULL,'2025-02-26 18:27:53','2025-07-27 06:21:59'),(6,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,56170000.00,'completed','traditional','paid',NULL,'2025-06-26 18:30:04','2025-07-27 06:21:59'),(7,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,14880000.00,'completed','traditional','paid',NULL,'2024-12-26 18:32:30','2025-07-27 06:21:59'),(8,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,15780000.00,'completed','traditional','paid',NULL,'2025-07-26 18:32:45','2025-07-27 06:20:43'),(9,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,22180000.00,'completed','traditional','paid',NULL,'2025-06-26 18:55:36','2025-07-27 06:21:59'),(10,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,23080000.00,'completed','traditional','paid',NULL,'2025-05-26 18:57:34','2025-07-27 06:21:59'),(11,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12390000.00,'completed','traditional','paid',NULL,'2025-04-26 19:39:21','2025-07-27 06:21:59'),(12,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,39150000.00,'completed','traditional','paid',NULL,'2025-03-26 19:40:07','2025-07-27 06:21:59'),(13,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,20070000.00,'completed','traditional','paid',NULL,'2025-02-26 19:41:14','2025-07-27 06:21:59'),(14,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,22470000.00,'completed','traditional','paid',NULL,'2025-01-26 19:41:59','2025-07-27 06:21:59'),(15,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,48460000.00,'completed','traditional','paid',NULL,'2025-08-01 16:46:47','2025-08-15 14:21:49'),(16,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,36690000.00,'completed','traditional','paid',NULL,'2025-08-08 07:40:48','2025-08-15 14:21:49'),(17,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6490000.00,'completed','traditional','paid',NULL,'2025-08-08 07:41:42','2025-08-15 14:21:49'),(18,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6490000.00,'completed','traditional','paid',NULL,'2025-08-08 07:42:38','2025-08-15 14:21:49'),(19,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12990000.00,'cancel','traditional','unpaid',NULL,'2025-08-08 07:44:30','2025-08-08 08:09:46'),(20,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12990000.00,'completed','traditional','paid',NULL,'2025-08-08 07:47:50','2025-08-15 14:21:49'),(21,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6490000.00,'completed','traditional','paid',NULL,'2025-08-08 07:49:10','2025-08-15 14:21:49'),(22,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12990000.00,'completed','traditional','paid',NULL,'2025-08-08 07:51:02','2025-08-15 14:21:49'),(23,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,89850000.00,'completed','traditional','paid',NULL,'2025-08-09 10:17:58','2025-08-15 14:21:49'),(24,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6590000.00,'pending','traditional','unpaid',NULL,'2025-08-09 10:47:20','2025-08-09 10:47:20'),(25,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6490000.00,'pending','traditional','unpaid',NULL,'2025-08-09 10:50:05','2025-08-09 10:50:05'),(26,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,14690000.00,'pending','traditional','unpaid',NULL,'2025-08-09 10:50:46','2025-08-09 10:50:46'),(27,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,32000000.00,'pending','traditional','unpaid',NULL,'2025-08-10 09:50:51','2025-08-10 09:50:51'),(28,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,25990000.00,'pending','traditional','unpaid',NULL,'2025-08-10 09:52:02','2025-08-10 09:52:02'),(29,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12990000.00,'pending','traditional','unpaid',NULL,'2025-08-10 10:00:36','2025-08-10 10:00:36'),(32,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,19140000.00,'completed','traditional','paid',NULL,'2025-08-11 03:48:30','2025-08-15 14:21:49'),(33,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,7490000.00,'completed','traditional','paid',NULL,'2025-08-13 04:14:29','2025-08-15 14:21:49'),(34,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,23340000.00,'pending','traditional','unpaid',NULL,'2025-08-15 13:22:18','2025-08-15 13:22:18'),(35,NULL,NULL,NULL,'tôi là guest','tôi là guest','tôi là guest','tôi là guest','tôi là guest',5990000.00,'pending','traditional','unpaid',NULL,'2025-08-15 14:03:56','2025-08-15 14:03:56'),(36,13,NULL,NULL,'','','','','',6490000.00,'pending','traditional','unpaid',NULL,'2025-08-15 14:26:52','2025-08-15 14:26:52'),(37,13,NULL,NULL,'','','','','',12590000.00,'pending','traditional','unpaid',NULL,'2025-08-15 15:27:35','2025-08-15 15:27:35'),(38,13,NULL,NULL,'','','','','',13990000.00,'pending','vnpay','unpaid',NULL,'2025-08-15 15:27:52','2025-08-15 15:27:52'),(39,13,NULL,NULL,'','','','','',8590000.00,'pending','vnpay','unpaid',NULL,'2025-08-15 15:30:40','2025-08-15 15:30:40'),(40,13,NULL,NULL,'','','','','',6490000.00,'pending','traditional','unpaid',NULL,'2025-08-15 15:36:00','2025-08-15 15:36:00'),(41,13,NULL,NULL,'','','','','',16490000.00,'pending','vnpay','unpaid',NULL,'2025-08-15 15:37:14','2025-08-15 15:37:14'),(42,13,NULL,NULL,'','','','','',16490000.00,'pending','vnpay','unpaid',NULL,'2025-08-15 15:39:10','2025-08-15 15:39:10'),(43,13,NULL,NULL,'','','','','',16490000.00,'pending','vnpay','paid',NULL,'2025-08-15 15:46:16','2025-08-15 15:48:00'),(44,13,NULL,NULL,'','','','','',16490000.00,'pending','vnpay','paid',NULL,'2025-08-15 15:53:09','2025-08-15 15:53:42'),(45,13,NULL,NULL,'','','','','',16490000.00,'pending','vnpay','paid',NULL,'2025-08-15 15:58:54','2025-08-15 15:59:27'),(46,13,NULL,NULL,'','','','','',16490000.00,'pending','vnpay','paid',NULL,'2025-08-15 16:06:14','2025-08-15 16:06:39'),(47,NULL,NULL,NULL,'tôi là guest','012345678','tôi là guest','tôi là guest','tôi là guest',6490000.00,'pending','traditional','unpaid',NULL,'2025-08-16 03:27:53','2025-08-16 03:27:53'),(48,NULL,'c278850e-03b5-41b1-a942-da21c6c74d38',NULL,'tôi là guest','123456789','tôi là guest','tôi là guest','tôi là guest',5990000.00,'pending','traditional','unpaid',NULL,'2025-08-16 03:34:56','2025-08-16 03:34:56'),(49,14,NULL,NULL,'','','','','',12590000.00,'preparing','traditional','unpaid',NULL,'2025-08-16 05:44:15','2025-09-24 07:09:28'),(50,2,NULL,NULL,'','','','','',5990000.00,'preparing','traditional','unpaid',NULL,'2025-08-16 08:40:55','2025-09-24 07:09:27'),(51,2,NULL,NULL,'','','','','',6490000.00,'preparing','traditional','unpaid',NULL,'2025-08-16 08:49:18','2025-09-24 07:09:27'),(52,2,NULL,NULL,'','','','','',6490000.00,'pending','vnpay','paid',NULL,'2025-08-16 08:50:15','2025-08-16 08:52:23'),(53,NULL,'d5c7c5f7-ff17-4514-b927-3cbc1cfb7e60',NULL,'tôi là guest','123456789','tôi là guest','tôi là guest','tôi là guest',5088000.00,'preparing','traditional','unpaid',NULL,'2025-08-19 09:03:56','2025-09-24 07:09:24'),(54,2,NULL,NULL,'','','','','',6590000.00,'preparing','vnpay','unpaid',NULL,'2025-08-20 02:55:45','2025-09-24 07:09:23');
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `packageserviceitems`
+--
+
+DROP TABLE IF EXISTS `packageserviceitems`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `packageserviceitems` (
+  `package_service_item_id` int NOT NULL AUTO_INCREMENT,
+  `package_id` int NOT NULL,
+  `service_id` int NOT NULL,
+  `item_price_impact` decimal(10,2) NOT NULL,
+  `at_least_one` tinyint(1) NOT NULL DEFAULT '0',
+  `selectable` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`package_service_item_id`),
+  UNIQUE KEY `package_id` (`package_id`,`service_id`),
+  KEY `fk_packageitem_service` (`service_id`),
+  CONSTRAINT `fk_packageitem_package` FOREIGN KEY (`package_id`) REFERENCES `servicepackages` (`package_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_packageitem_service` FOREIGN KEY (`service_id`) REFERENCES `services` (`service_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=136 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `packageserviceitems`
+--
+
+LOCK TABLES `packageserviceitems` WRITE;
+/*!40000 ALTER TABLE `packageserviceitems` DISABLE KEYS */;
+INSERT INTO `packageserviceitems` VALUES (38,22,11,0.00,0,0,'2025-07-21 16:18:01','2025-07-21 16:18:01'),(39,23,9,500000.00,1,1,'2025-07-21 16:18:01','2025-07-21 16:18:01'),(40,24,11,0.00,0,0,'2025-07-21 16:18:01','2025-07-21 16:18:01'),(41,25,9,500000.00,1,1,'2025-07-21 16:18:01','2025-07-21 16:18:01'),(42,26,11,0.00,0,0,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(43,27,3,550000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(44,27,4,350000.00,0,0,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(45,27,5,50000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(46,27,6,50000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(47,28,4,350000.00,0,0,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(48,28,3,550000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(49,28,5,50000.00,0,1,'2025-07-23 06:44:18','2025-07-23 08:28:59'),(50,28,6,50000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(51,28,9,200000.00,1,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(52,28,2,640000.00,1,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(53,29,10,0.00,0,0,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(54,30,3,550000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(55,30,4,350000.00,0,0,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(56,30,6,50000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(57,30,5,50000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(58,31,4,350000.00,0,0,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(59,31,3,500000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(60,31,5,50000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(61,31,6,50000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(62,31,9,200000.00,1,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(63,31,2,640000.00,1,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(64,32,10,0.00,0,0,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(65,33,4,350000.00,0,0,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(66,33,6,50000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(67,33,3,550000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(68,33,5,50000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(69,34,4,350000.00,0,0,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(70,34,3,550000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(71,34,5,50000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(72,34,6,50000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(73,34,9,300000.00,1,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(74,34,2,700000.00,1,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(75,35,10,0.00,0,0,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(76,36,4,350000.00,0,0,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(77,36,3,600000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(78,36,5,70000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(79,36,6,70000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(80,37,4,350000.00,0,0,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(81,37,3,750000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(82,37,5,75000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(83,37,6,75000.00,0,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(84,37,2,800000.00,1,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(85,37,9,400000.00,1,1,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(86,38,11,0.00,0,0,'2025-07-26 19:37:27','2025-07-26 19:37:27'),(87,39,9,500000.00,1,1,'2025-07-26 19:37:27','2025-07-26 19:37:27'),(88,40,11,0.00,0,0,'2025-07-26 19:37:27','2025-07-26 19:37:27'),(89,41,9,550000.00,1,1,'2025-07-26 19:37:27','2025-07-26 19:37:27'),(90,42,11,0.00,0,0,'2025-07-26 19:37:27','2025-07-26 19:37:27'),(91,43,9,600000.00,1,1,'2025-07-26 19:37:27','2025-07-26 19:37:27'),(92,44,11,0.00,0,0,'2025-08-01 16:57:30','2025-08-01 16:57:30'),(94,46,11,0.00,0,0,'2025-08-02 05:15:12','2025-08-02 05:15:12'),(95,47,11,0.00,0,0,'2025-08-02 05:15:12','2025-08-02 05:15:12'),(96,47,9,10000000.00,1,1,'2025-08-02 05:15:12','2025-08-02 05:15:12'),(97,48,11,0.00,0,0,'2025-08-02 05:15:12','2025-08-02 05:15:12'),(98,49,11,0.00,0,0,'2025-08-02 05:15:12','2025-08-02 05:15:12'),(99,49,9,20000000.00,1,1,'2025-08-02 05:15:12','2025-08-02 05:15:12'),(109,56,11,0.00,0,0,'2025-08-15 09:11:07','2025-08-15 09:11:07'),(110,57,11,0.00,0,0,'2025-08-15 21:09:03','2025-08-15 21:09:03'),(111,58,9,800000.00,1,1,'2025-08-15 21:09:03','2025-08-15 21:09:03'),(112,59,11,0.00,0,0,'2025-08-15 21:13:49','2025-08-15 21:13:49'),(113,60,9,500000.00,0,0,'2025-08-15 21:13:49','2025-08-15 21:13:49'),(114,61,11,0.00,0,0,'2025-08-15 21:44:47','2025-08-15 21:44:47'),(115,62,9,500000.00,1,1,'2025-08-15 21:44:47','2025-08-15 21:44:47'),(116,63,11,0.00,0,0,'2025-08-15 21:58:47','2025-08-15 21:58:47'),(117,64,9,500000.00,1,1,'2025-08-15 21:58:47','2025-08-15 21:58:47'),(118,65,11,0.00,0,0,'2025-08-15 21:58:47','2025-08-15 21:58:47'),(119,66,9,700000.00,1,1,'2025-08-15 21:58:47','2025-08-15 21:58:47'),(120,58,11,0.00,0,0,'2025-08-19 08:52:45','2025-08-19 08:52:45'),(121,67,11,0.00,0,0,'2025-08-19 11:27:41','2025-08-19 11:27:41'),(122,68,11,0.00,0,0,'2025-08-19 11:27:41','2025-08-19 11:27:41'),(123,69,11,0.00,0,0,'2025-08-19 11:27:41','2025-08-19 11:27:41'),(124,70,11,0.00,0,0,'2025-08-19 11:48:32','2025-08-19 11:48:32'),(125,71,11,0.00,0,1,'2025-08-19 11:48:32','2025-08-19 11:48:32'),(126,71,9,400000.00,1,1,'2025-08-19 11:48:32','2025-08-19 11:48:32'),(127,72,11,0.00,0,1,'2025-08-19 11:48:32','2025-08-19 11:48:32'),(128,73,11,0.00,0,0,'2025-08-19 11:48:32','2025-08-19 11:48:32'),(129,73,9,500000.00,1,1,'2025-08-19 11:48:32','2025-08-19 11:48:32'),(130,74,11,0.00,0,0,'2025-08-19 11:48:32','2025-08-19 11:48:32'),(131,75,11,0.00,0,1,'2025-08-19 11:48:32','2025-08-19 11:48:32'),(132,75,9,700000.00,1,1,'2025-08-19 11:48:32','2025-08-19 11:48:32'),(133,76,11,0.00,0,0,'2025-08-19 11:48:32','2025-08-19 11:48:32'),(134,77,11,0.00,0,0,'2025-08-19 11:48:32','2025-08-19 11:48:32'),(135,77,9,800000.00,1,1,'2025-08-19 11:48:33','2025-08-19 11:48:33');
+/*!40000 ALTER TABLE `packageserviceitems` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `price_history`
+--
+
+DROP TABLE IF EXISTS `price_history`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `price_history` (
+  `price_id` bigint NOT NULL AUTO_INCREMENT,
+  `variant_id` int DEFAULT NULL,
+  `starts_at` datetime NOT NULL,
+  `ends_at` datetime DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`price_id`),
+  KEY `variant_id` (`variant_id`),
+  CONSTRAINT `price_history_ibfk_1` FOREIGN KEY (`variant_id`) REFERENCES `productvariants` (`variant_id`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `price_history`
+--
+
+LOCK TABLES `price_history` WRITE;
+/*!40000 ALTER TABLE `price_history` DISABLE KEYS */;
+/*!40000 ALTER TABLE `price_history` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product_events`
+--
+
+DROP TABLE IF EXISTS `product_events`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `product_events` (
+  `event_id` bigint NOT NULL AUTO_INCREMENT,
+  `event_time` date NOT NULL,
+  `user_id` int DEFAULT NULL,
+  `session_id` varchar(255) DEFAULT NULL,
+  `event_type` enum('view','add_to_cart','purchase') NOT NULL,
+  `variant_id` int DEFAULT NULL,
+  `quantity` int NOT NULL DEFAULT '1',
+  `price_at_event` decimal(12,2) DEFAULT NULL,
+  `referrer` varchar(255) DEFAULT NULL,
+  `utm_source` varchar(100) DEFAULT NULL,
+  `utm_medium` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `click_counting` int NOT NULL DEFAULT '1',
+  PRIMARY KEY (`event_id`),
+  KEY `variant_id` (`variant_id`),
+  KEY `idx_user_event_variant_on_product_events` (`user_id`,`event_type`,`variant_id`),
+  KEY `idx_session_event_variant_on_product_events` (`session_id`,`event_type`,`variant_id`),
+  CONSTRAINT `product_events_ibfk_1` FOREIGN KEY (`variant_id`) REFERENCES `productvariants` (`variant_id`),
+  CONSTRAINT `product_events_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product_events`
+--
+
+LOCK TABLES `product_events` WRITE;
+/*!40000 ALTER TABLE `product_events` DISABLE KEYS */;
+INSERT INTO `product_events` VALUES (24,'2025-11-06',2,NULL,'view',37,1,6590000.00,NULL,NULL,NULL,'2025-10-26 06:00:49',11),(39,'2025-10-27',2,NULL,'add_to_cart',37,1,6590000.00,NULL,NULL,NULL,'2025-10-27 07:03:34',35),(40,'2025-11-07',2,NULL,'view',71,1,10000000.00,NULL,NULL,NULL,'2025-10-27 07:16:20',2),(41,'2025-10-27',2,NULL,'add_to_cart',71,1,10000000.00,NULL,NULL,NULL,'2025-10-27 07:16:23',1),(42,'2025-10-30',2,NULL,'view',66,1,13990000.00,NULL,NULL,NULL,'2025-10-31 02:44:53',2),(43,'2025-11-01',NULL,'e2282dc9-78ca-486e-a4f3-57609d691888','view',71,1,10000000.00,NULL,NULL,NULL,'2025-11-01 03:29:42',5),(44,'2025-11-06',NULL,'d74a8e9f-c270-4168-93bf-88421cfd3344','view',63,1,4880000.00,NULL,NULL,NULL,'2025-11-01 10:05:22',5),(45,'2025-11-06',NULL,'d74a8e9f-c270-4168-93bf-88421cfd3344','view',62,1,3390000.00,NULL,NULL,NULL,'2025-11-01 10:05:50',4),(46,'2025-11-06',NULL,'d74a8e9f-c270-4168-93bf-88421cfd3344','view',64,1,5088000.00,NULL,NULL,NULL,'2025-11-01 10:06:00',3),(47,'2025-11-06',NULL,'d74a8e9f-c270-4168-93bf-88421cfd3344','view',48,1,5870000.00,NULL,NULL,NULL,'2025-11-01 10:06:07',6),(48,'2025-11-06',NULL,'d74a8e9f-c270-4168-93bf-88421cfd3344','view',47,1,5900000.00,NULL,NULL,NULL,'2025-11-01 10:06:08',6),(49,'2025-11-06',NULL,'d74a8e9f-c270-4168-93bf-88421cfd3344','view',49,1,6490000.00,NULL,NULL,NULL,'2025-11-01 10:06:11',6),(50,'2025-11-01',NULL,'d74a8e9f-c270-4168-93bf-88421cfd3344','view',73,1,15000000.00,NULL,NULL,NULL,'2025-11-01 10:07:08',3),(51,'2025-11-01',NULL,'d74a8e9f-c270-4168-93bf-88421cfd3344','view',72,1,11000000.00,NULL,NULL,NULL,'2025-11-01 10:07:16',1),(52,'2025-11-01',NULL,'d74a8e9f-c270-4168-93bf-88421cfd3344','view',74,1,17000000.00,NULL,NULL,NULL,'2025-11-01 10:07:17',1),(53,'2025-11-06',NULL,'d74a8e9f-c270-4168-93bf-88421cfd3344','view',37,1,6590000.00,NULL,NULL,NULL,'2025-11-06 05:32:42',2),(54,'2025-11-06',NULL,'d74a8e9f-c270-4168-93bf-88421cfd3344','view',39,1,14690000.00,NULL,NULL,NULL,'2025-11-06 05:32:47',3),(55,'2025-11-06',NULL,'d74a8e9f-c270-4168-93bf-88421cfd3344','view',40,1,17590000.00,NULL,NULL,NULL,'2025-11-06 05:32:48',2),(56,'2025-11-06',NULL,'d74a8e9f-c270-4168-93bf-88421cfd3344','view',38,1,7590000.00,NULL,NULL,NULL,'2025-11-06 05:32:50',2),(57,'2025-11-06',2,NULL,'view',58,1,12590000.00,NULL,NULL,NULL,'2025-11-06 10:35:12',2),(58,'2025-11-06',2,NULL,'view',57,1,9990000.00,NULL,NULL,NULL,'2025-11-06 10:35:13',1),(59,'2025-11-06',2,NULL,'view',65,1,7190000.00,NULL,NULL,NULL,'2025-11-06 10:35:19',1);
+/*!40000 ALTER TABLE `product_events` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `productattributes`
+--
+
+DROP TABLE IF EXISTS `productattributes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `productattributes` (
+  `attribute_id` int NOT NULL AUTO_INCREMENT,
+  `attribute_name` varchar(255) NOT NULL,
+  `display_order` int DEFAULT NULL,
+  `is_filterable` tinyint(1) DEFAULT '0',
+  `group_id` int DEFAULT NULL,
+  `unit` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`attribute_id`),
+  KEY `group_id` (`group_id`),
+  CONSTRAINT `productattributes_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `attributegroups` (`group_id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=153 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `productattributes`
+--
+
+LOCK TABLES `productattributes` WRITE;
+/*!40000 ALTER TABLE `productattributes` DISABLE KEYS */;
+INSERT INTO `productattributes` VALUES (1,'Loại máy',100000,1,1,NULL),(2,'Inverter',200000,1,1,NULL),(3,'Công suất làm lạnh',300000,0,1,NULL),(4,'Phạm vi làm lạnh hiệu quả',400000,0,1,NULL),(5,'Dòng sản phẩm',500000,0,1,NULL),(6,'Sản xuất tại',600000,0,1,NULL),(7,'Thời gian bảo hành cục lạnh, cục nóng',700000,0,1,NULL),(8,'Thời gian bảo hành máy nén',800000,0,1,NULL),(9,'Chất liệu dàn tản nhiệt',900000,0,1,NULL),(10,'Loại Gas',1000000,0,1,NULL),(11,'Tiêu thụ điện',100000,0,2,NULL),(12,'Nhãn năng lượng ',200000,0,2,NULL),(13,'Công nghệ tiết kiệm',300000,0,2,NULL),(14,'Lọc bụi, kháng khuẩn, khử mùi',100000,0,3,NULL),(15,'Chế độ gió',100000,0,4,NULL),(16,'Công nghệ làm lạnh nhanh',200000,0,4,NULL),(17,'Tiện ích',100000,0,5,NULL),(18,'Kích thước dàn lạnh',100000,0,6,NULL),(19,'Khối lượng dàn lạnh',200000,0,6,NULL),(20,'Kích thước dàn nóng',300000,0,6,NULL),(21,'Kiểu tủ',100000,1,12,NULL),(22,'Dung tích tổng',200000,0,12,'Lít'),(23,'Dung tích sử dụng',300000,0,12,'Lít'),(24,'Dung tích ngăn đá',400000,0,12,'Lít'),(25,'Dung tích ngăn lạnh',500000,0,12,'Lít'),(26,'Chất liệu cửa tủ lạnh',600000,0,12,NULL),(27,'Chất liệu khay ngăn lạnh',700000,0,12,NULL),(28,'Chất liệu ống dẫn gas, dàn lạnh',800000,0,12,NULL),(29,'Năm ra mắt',900000,0,12,NULL),(30,'Sản xuất tại',1000000,0,12,NULL),(31,'Công suất tiêu thụ công bố theo TCVN',100000,0,13,NULL),(32,'Công nghệ tiết kiệm điện',200000,0,13,NULL),(33,'Công nghệ làm lạnh',100000,0,14,NULL),(34,'Công nghệ bảo quản thực phẩm',200000,0,14,NULL),(35,'Công nghệ kháng khuẩn, khử mùi',300000,0,14,NULL),(36,'Tiện ích',100000,0,15,NULL),(37,'Kích thước - Khối lượng',100000,0,16,NULL),(38,'Hãng',200000,0,16,NULL),(39,'Loại máy giặt',100000,1,7,NULL),(40,'Lồng giặt',200000,0,7,NULL),(41,'Khối lượng giặt',300000,0,7,'Kg'),(42,'Số người sử dụng',400000,0,7,NULL),(43,'Kiểu động cơ',500000,0,7,NULL),(44,'Tốc độ quay vắt tối đa',600000,0,7,'vòng/phút'),(45,'Chất liệu lồng giặt',700000,0,7,NULL),(46,'Chất liệu vỏ máy',800000,0,7,NULL),(47,'Chất liệu cửa máy',900000,0,7,NULL),(48,'Sản xuất tại',1000000,0,7,NULL),(49,'Năm ra mắt',1100000,0,7,NULL),(50,'Thời gian bảo hành động cơ',1200000,0,7,'năm'),(51,'Kích thước - Khối lượng',100000,0,11,NULL),(52,'Chiều dài ống cấp nước',200000,0,11,'m'),(53,'Chiều dài ống thoát nước',300000,0,11,'m'),(54,'Hãng',400000,0,11,NULL),(55,'Hiệu suất sử dụng điện',100000,0,8,NULL),(56,'Loại inverter',200000,0,8,NULL),(57,'Chương trình',100000,0,9,NULL),(58,'Công nghệ giặc',200000,0,9,NULL),(59,'Bảng điều khiển',100000,0,10,NULL),(60,'Tiện ích',200000,0,10,NULL),(67,'Hệ điều hành',100000,0,20,NULL),(68,'Chip xử lý (CPU)',200000,0,20,NULL),(69,'Tốc độ CPU',300000,0,20,NULL),(70,'Chip đồ họa (GPU)',400000,0,20,NULL),(71,'Thẻ nhớ',500000,0,20,NULL),(72,'Danh bạ',600000,0,20,NULL),(73,'RAM',700000,0,20,NULL),(74,'Dung lượng lưu trữ',800000,0,20,NULL),(75,'Dung lượng còn lại (khả dụng) khoảng',900000,0,20,NULL),(76,'Độ phân giải camera sau',200000,0,21,NULL),(77,'Quay phim camera sau',300000,0,21,NULL),(78,'Đèn Flash camera sau',400000,0,21,NULL),(79,'Tính năng camera sau',500000,0,21,NULL),(80,'Độ phân giải camera trước',600000,0,21,NULL),(81,'Tính năng camera trước	',700000,0,21,NULL),(82,'Công nghệ màn hình',800000,0,21,NULL),(83,'Độ phân giải màn hình',900000,0,21,NULL),(84,'Màn hình rộng',1000000,0,21,NULL),(85,'Độ sáng tối đa',1100000,0,21,NULL),(86,'Mặt kính cảm ứng',1200000,0,21,NULL),(87,'Dung lượng pin',200000,0,22,NULL),(88,'Loại pin',300000,0,22,NULL),(89,'Hỗ trợ sạc tối đa',400000,0,22,NULL),(90,'Sạc kèm theo máy',500000,0,22,NULL),(91,'Công nghệ pin',600000,0,22,NULL),(92,'Bảo mật nâng cao',100000,0,23,NULL),(93,'Tính năng đặc biệt',200000,0,23,NULL),(94,'Kháng nước, bụi',300000,0,23,NULL),(95,'Ghi âm',400000,0,23,NULL),(96,'Radio',500000,0,23,NULL),(97,'Xem phim',600000,0,23,NULL),(98,'Nghe nhạc',700000,0,23,NULL),(99,'Mạng di động',800000,0,23,NULL),(100,'SIM',900000,0,23,NULL),(101,'Wifi',1000000,0,23,NULL),(102,'GPS',1100000,0,23,NULL),(103,'Bluetooth',1200000,0,23,NULL),(104,'Cổng kết nối/sạc',1300000,0,23,NULL),(105,'Jack tai nghe',1400000,0,23,NULL),(106,'Kết nối khác',1500000,0,23,NULL),(107,'Thiết kế',100000,0,24,NULL),(108,'Chất liệu',200000,0,24,NULL),(109,'Kích thước, khối lượng',300000,0,24,NULL),(110,'Thời điểm ra mắt',400000,0,24,NULL),(111,'Hãng',500000,0,24,NULL),(112,'Loại Tivi',100000,0,25,NULL),(113,'Kích cỡ màn hình',200000,0,25,NULL),(114,'Độ phân giải',300000,0,25,NULL),(115,'Loại màn hình',400000,0,25,NULL),(116,'Hệ điều hành',500000,0,25,NULL),(117,'Chất liệu chân đế',600000,0,25,NULL),(118,'Chất liệu viền tivi',700000,0,25,NULL),(119,'Nơi sản xuất',800000,0,25,NULL),(120,'Năm ra mắt',900000,0,25,NULL),(121,'Công nghệ hình ảnh',100000,0,26,NULL),(122,'Bộ xử lý',200000,0,26,NULL),(123,'Tần số quét thực',300000,0,26,NULL),(124,'Điều khiển tivi bằng điện thoại',100000,0,27,NULL),(125,'Điều khiển bằng giọng nói',200000,0,27,NULL),(126,'Chiếu hình từ điện thoại lên TV',300000,0,27,NULL),(127,'Remote thông minh',100000,0,28,NULL),(128,'Kết nối ứng dụng các thiết bị trong nhà',200000,0,28,NULL),(129,'Ứng dụng phổ biến',300000,0,28,NULL),(130,'Tiện ích thông minh khác',400000,0,28,NULL),(131,'Tổng công suất loa',100000,0,29,NULL),(132,'Số lượng loa',200000,0,29,NULL),(133,'Âm thanh vòm',300000,0,29,NULL),(134,'Các công nghệ khác',400000,0,29,NULL),(135,'Kết nối Internet',100000,0,30,NULL),(136,'Kết nối không dây',200000,0,30,NULL),(137,'USB',300000,0,30,NULL),(138,'Cổng nhận hình ảnh, âm thanh',400000,0,30,NULL),(139,'Cổng xuất âm thanh',500000,0,30,NULL),(140,'Kích thước có chân, đặt bàn',100000,0,31,NULL),(141,'Khối lượng có chân',200000,0,31,NULL),(142,'Kích thước không chân, treo tường',300000,0,31,NULL),(143,'Khối lượng không chân',400000,0,31,NULL),(144,'Hãng',500000,0,31,NULL),(145,'Điều khiển tivi bằng điện thoại:',100000,0,32,NULL),(146,'Điều khiển bằng giọng nói:',200000,0,32,NULL),(147,'Chiếu hình từ điện thoại lên TV:',300000,0,32,NULL),(148,'Remote thông minh:',400000,0,32,NULL),(149,'Ứng dụng phổ biến:',500000,0,32,NULL),(150,'Tổng công suất loa:',100000,0,33,NULL),(151,'Số lượng loa:',200000,0,33,NULL),(152,'Các công nghệ khác:',300000,0,33,NULL);
+/*!40000 ALTER TABLE `productattributes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `productimages`
+--
+
+DROP TABLE IF EXISTS `productimages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `productimages` (
+  `img_id` int NOT NULL AUTO_INCREMENT,
+  `product_id` int NOT NULL,
+  `display_order` int DEFAULT NULL,
+  `image_url` varchar(2048) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`img_id`),
+  KEY `product_id` (`product_id`),
+  CONSTRAINT `productimages_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `productimages`
+--
+
+LOCK TABLES `productimages` WRITE;
+/*!40000 ALTER TABLE `productimages` DISABLE KEYS */;
+INSERT INTO `productimages` VALUES (66,23,700000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1753114674436_9ra3dquo97u.jpg?alt=media&token=6562a9d6-d400-4097-be21-6492ee092572','2025-07-21 16:18:01','2025-08-01 15:04:11'),(67,23,800000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1753114675888_n1crjuuiqsh.jpg?alt=media&token=4633ac24-3704-42f6-8d62-688401eabfa3','2025-07-21 16:18:01','2025-08-01 15:04:11'),(68,23,900000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1753114677610_j9bzgy2fej.jpg?alt=media&token=32803cc3-fb32-437b-9939-42834be7fc41','2025-07-21 16:18:01','2025-08-01 15:04:11'),(69,24,100000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1753253045259_haout7i61bs.jpg?alt=media&token=4cef467e-2e84-41eb-9b03-711b6f8d3994','2025-07-23 06:44:18','2025-07-23 06:44:18'),(70,24,200000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1753253047362_cmyg1sku2k6.jpg?alt=media&token=760b90ab-3f64-4cec-be17-6b8958e65205','2025-07-23 06:44:18','2025-07-23 06:44:18'),(71,24,300000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1753253049236_wrrd6l8u6y.jpg?alt=media&token=223ed703-9dd6-45af-9dd8-8a92a678f8f5','2025-07-23 06:44:18','2025-07-23 06:44:18'),(72,24,400000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1753253050939_cnqx88laa1h.jpg?alt=media&token=e59552ae-02a2-4f0a-ac09-49be99042c77','2025-07-23 06:44:18','2025-07-23 06:44:18'),(73,24,500000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1753253054420_0eqxp39m1ubj.png?alt=media&token=b23c16bf-042f-483d-ba0c-d42063f4f4c9','2025-07-23 06:44:18','2025-07-23 06:44:18'),(89,28,100000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1753558639678_woqvinga3q.jpg?alt=media&token=b22b4c69-bdde-489f-b8f0-aca4abcfa45a','2025-07-26 19:37:27','2025-07-26 19:37:27'),(90,28,200000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1753558641117_hd05pihg1q.jpg?alt=media&token=589d585d-81ae-4b37-82a1-99b7feab02c5','2025-07-26 19:37:27','2025-07-26 19:37:27'),(91,28,300000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1753558642043_bfgr41ecr9l.jpg?alt=media&token=0320e451-8fe7-42f6-9f59-b525dfc16857','2025-07-26 19:37:27','2025-07-26 19:37:27'),(92,28,400000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1753558643561_yezr0zu7avf.jpg?alt=media&token=a9bb7355-fb5e-468b-899a-73afe98706c2','2025-07-26 19:37:27','2025-07-26 19:37:27'),(93,28,500000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1753558644688_u7dn90ke6o.jpg?alt=media&token=a901160e-30bf-4e94-ac4a-cc2eca5a90f0','2025-07-26 19:37:27','2025-07-26 19:37:27'),(101,30,100000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1754111700669_4cqp2ij2f3t.jpg?alt=media&token=b831f217-f647-4672-abf8-8b0ce2a651c1','2025-08-02 05:15:12','2025-08-02 05:15:12'),(102,30,200000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1754111703817_yyxc1dlt7in.jpg?alt=media&token=ae193162-b32d-42a3-8d2b-a467bfadd0e9','2025-08-02 05:15:12','2025-08-02 05:15:12'),(112,32,100000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1754865834192_qhcphqd231n.jpg?alt=media&token=31d7f440-c4b6-4d60-9646-81d834ef7369','2025-08-10 22:44:05','2025-08-10 22:44:05'),(114,32,300000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1754865838935_vibi2a0futb.jpg?alt=media&token=5f73fa45-1ac5-44b7-9858-9a0275a32189','2025-08-10 22:44:05','2025-08-10 22:44:05'),(115,32,400000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1754865841329_bn6hon6wsab.jpg?alt=media&token=e8027278-526e-45e7-86ae-e244a1400dd1','2025-08-10 22:44:05','2025-08-10 22:44:05'),(116,32,500000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1754865842246_2k6mxtw1uh7.jpg?alt=media&token=d12e4804-22cb-4437-b99f-8d269ac315de','2025-08-10 22:44:05','2025-08-10 22:44:05'),(121,31,200000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755242715381_tvl9tyep6g.jpg?alt=media&token=a8131dbf-22c9-4856-94fd-9f8f8b5519ab','2025-08-15 07:25:17','2025-08-15 07:25:17'),(133,31,600000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755243341551_tctt879inh.jpg?alt=media&token=56356000-c71f-495b-9077-8d3df34e20fd','2025-08-15 07:35:44','2025-08-15 07:35:44'),(144,33,100000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755291793679_xujn2ia4yga.jpg?alt=media&token=631f107e-6dae-432a-b82e-1b569643c607','2025-08-15 21:03:19','2025-08-15 21:03:19'),(145,33,200000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755291795348_y0bwuvmbzda.jpg?alt=media&token=e7167d9c-2e82-42c5-83f8-a08b4a36d63c','2025-08-15 21:03:19','2025-08-15 21:03:19'),(146,33,300000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755291796633_mzpzqpsn21r.jpg?alt=media&token=2acc254c-9468-4036-8225-decc47be5147','2025-08-15 21:03:19','2025-08-15 21:03:19'),(147,34,100000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755292135253_6fbe00fe9d5.jpg?alt=media&token=4c3e2511-9396-4c92-86c8-59a22d70f53f','2025-08-15 21:09:03','2025-08-15 21:09:03'),(148,34,200000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755292138569_2n5imj6bmbt.jpg?alt=media&token=a5b47db4-f51e-435b-830f-bc65943e71c4','2025-08-15 21:09:03','2025-08-15 21:09:03'),(149,34,300000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755292140688_y168imhg2e.jpg?alt=media&token=276bdf27-2e2f-4127-8cbe-6e89886e6d6c','2025-08-15 21:09:03','2025-08-15 21:09:03'),(150,35,100000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755292421304_ob5mqkx0osh.jpg?alt=media&token=8037de3c-20df-449c-b9b1-f0966abca0d3','2025-08-15 21:13:49','2025-08-15 21:13:49'),(151,35,200000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755292423307_yp20wvswo6.jpg?alt=media&token=54647827-7687-405b-9b85-e9b566389a71','2025-08-15 21:13:49','2025-08-15 21:13:49'),(152,35,300000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755292425064_p5w2ilw1jq.jpg?alt=media&token=846bd162-4e7e-46a5-98dd-790b00a432f4','2025-08-15 21:13:49','2025-08-15 21:13:49'),(153,36,100000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755293434783_p7iz77q2zi.jpg?alt=media&token=df7b6662-6cb5-46c3-9312-c63b6b6b3b6f','2025-08-15 21:30:57','2025-08-15 21:30:57'),(154,36,200000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755293436648_6cj8ip6eaud.jpg?alt=media&token=ed62c398-c667-41a1-ae21-36b028601799','2025-08-15 21:30:57','2025-08-15 21:30:57'),(155,36,300000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755293440487_gnki4drz2ve.jpg?alt=media&token=573291f9-ccf6-47fe-a6c7-14fe1f72ea1b','2025-08-15 21:30:57','2025-08-15 21:30:57'),(156,37,100000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755294279767_h35oxtfjq6c.jpg?alt=media&token=150b7c6d-53a0-4c72-b229-c7698018ee3b','2025-08-15 21:44:47','2025-08-15 21:44:47'),(157,37,200000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755294281829_1lqbwm72y9v.jpg?alt=media&token=8c035c94-722e-4f4b-939c-8c0ddbfb82a7','2025-08-15 21:44:47','2025-08-15 21:44:47'),(158,37,300000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755294283188_s45ax57jera.jpg?alt=media&token=2c035245-d0dc-49be-9291-9b19930abeb7','2025-08-15 21:44:47','2025-08-15 21:44:47'),(159,38,100000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755295117910_7jkf3nr3dv.jpg?alt=media&token=7b17fd79-d744-4917-bf36-58dbe519f228','2025-08-15 21:58:47','2025-08-15 21:58:47'),(160,38,200000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755295120025_bfws5iqnmdg.jpg?alt=media&token=a3ad0706-a8a1-415c-bc23-729bb03a274d','2025-08-15 21:58:47','2025-08-15 21:58:47'),(161,38,300000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755295122675_k1maqjlc8yn.jpg?alt=media&token=8d4fc55e-4b9f-4f1d-a17b-24fd402179b7','2025-08-15 21:58:47','2025-08-15 21:58:47'),(162,29,1000000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755297616940_in0l50sejh.jpg?alt=media&token=e20b821f-149c-41ea-bea6-edfc5cb5e189','2025-08-15 22:40:18','2025-08-15 22:40:18'),(163,29,1100000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755297616945_lk5guk9y3rp.jpg?alt=media&token=232bcb92-452f-45e7-9dda-b9a6a8adc71f','2025-08-15 22:40:18','2025-08-15 22:40:18'),(164,29,1200000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755297616945_33b1qpzryfq.jpg?alt=media&token=94d0264b-b19f-4281-8476-d6dbebc92768','2025-08-15 22:40:18','2025-08-15 22:40:18'),(167,39,100000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755602854659_z3bfc8fipji.jpg?alt=media&token=e83f7e6c-459b-4538-a52f-2840699893b6','2025-08-19 11:27:41','2025-08-19 11:27:41'),(168,39,200000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755602856491_tipwi5exh2.jpg?alt=media&token=3b006284-500b-46f4-9a4f-196678f370a5','2025-08-19 11:27:41','2025-08-19 11:27:41'),(169,39,300000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755602857812_kg7p6njeg09.jpg?alt=media&token=f9230c4d-5991-411a-94ff-d7db63db8b0d','2025-08-19 11:27:41','2025-08-19 11:27:41'),(170,40,100000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755604106671_49uhfuyx9nu.jpg?alt=media&token=d21c1c31-1d6d-4280-b9d9-44982d42af35','2025-08-19 11:48:32','2025-08-19 11:48:32'),(171,40,200000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755604108399_yhsyazofkyt.jpg?alt=media&token=d0a5ad42-e6df-4ee0-acb6-a9bc9a9448cb','2025-08-19 11:48:32','2025-08-19 11:48:32'),(172,40,300000,'https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fbasic%2F1755604109807_mamdgxu2tqr.jpg?alt=media&token=078ff6e6-bc57-43af-9b6a-ab81a820c8c3','2025-08-19 11:48:32','2025-08-19 11:48:32');
+/*!40000 ALTER TABLE `productimages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `products` (
+  `product_id` int NOT NULL AUTO_INCREMENT,
+  `product_name` varchar(255) NOT NULL,
+  `brand_id` int NOT NULL,
+  `category_id` int NOT NULL,
+  `is_active` tinyint(1) DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `sale_volume` int DEFAULT NULL,
+  PRIMARY KEY (`product_id`),
+  KEY `brand_id` (`brand_id`),
+  KEY `category_id` (`category_id`),
+  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`brand_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `products_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `products`
+--
+
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (23,'Máy giặt Aqua Inverter AQD-A952J BKh',3,5,1,'2025-07-21 16:18:01','2025-08-20 01:00:46',6),(24,'Máy lạnh AUX Inverter AW10CAA4DI-3VN',11,3,1,'2025-07-23 06:44:18','2025-08-15 05:03:33',11),(28,'Tủ lạnh Samsung Inverter RT22M4032BU/SV',1,1,1,'2025-07-26 19:37:27','2025-08-06 06:16:16',8),(29,'Tủ lạnh Samsung Inverter Multi Door Bespoke RF65DB990012SV',1,1,1,'2025-08-01 16:57:30','2025-08-15 23:08:35',4),(30,'Turn X Gundam',9,1,1,'2025-08-02 05:15:12','2025-08-09 10:18:51',20),(31,'Tủ lạnh Sam',1,4,1,'2025-08-02 11:27:03','2025-08-15 23:07:37',8),(32,'Smart Tivi Crystal UHD Samsung 4K UA43CU8000',1,2,1,'2025-08-10 22:44:04','2025-08-10 22:44:04',0),(33,'Tủ lạnh Toshiba Inverter Side By Side GR-RS910WI-PMV(06)-MG',4,1,1,'2025-08-15 21:03:19','2025-08-15 21:03:19',0),(34,'Tủ lạnh Hitachi Inverter Side By Side AQR-S682XA(SLB)',9,1,1,'2025-08-15 21:09:03','2025-08-19 08:53:17',0),(35,'Tủ lạnh Aqua AQR-D100FA(BS)',3,1,1,'2025-08-15 21:13:49','2025-08-15 21:13:49',0),(36,'Tủ lạnh Sharp Inverter SJ-X198V-SL',7,1,1,'2025-08-15 21:30:57','2025-08-15 21:30:57',0),(37,'Google Tivi Sony  KD-32W830K',12,2,1,'2025-08-15 21:44:47','2025-08-15 21:44:47',0),(38,'Smart Tivi QLED Toshiba AI 4K 65M450RP',4,2,1,'2025-08-15 21:58:47','2025-08-15 21:58:47',0),(39,'Điện thoại iPhone 16e',13,4,1,'2025-08-19 11:27:41','2025-08-19 11:27:41',0),(40,'Máy giặt LG AI DD Inverter FV1410S4B',5,5,1,'2025-08-19 11:48:32','2025-08-19 11:48:32',0);
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `productspecifications`
+--
+
+DROP TABLE IF EXISTS `productspecifications`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `productspecifications` (
+  `specification_id` int NOT NULL AUTO_INCREMENT,
+  `product_id` int NOT NULL,
+  `attribute_id` int NOT NULL,
+  `attribute_value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`specification_id`),
+  KEY `idx_product_id` (`product_id`),
+  KEY `idx_attribute_id` (`attribute_id`),
+  CONSTRAINT `fk_product_spec_attribute` FOREIGN KEY (`attribute_id`) REFERENCES `productattributes` (`attribute_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_product_spec_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=529 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `productspecifications`
+--
+
+LOCK TABLES `productspecifications` WRITE;
+/*!40000 ALTER TABLE `productspecifications` DISABLE KEYS */;
+INSERT INTO `productspecifications` VALUES (7,23,39,'Cửa trước'),(8,23,40,'Lồng ngang'),(9,23,41,'9.5 Kg'),(10,23,42,'Từ 5 - 7 người'),(11,23,43,'Truyền động gián tiếp (dây Curoa)'),(12,23,44,'1400 vòng/phút'),(13,23,45,'Thép không gỉ'),(14,23,46,'Kim loại sơn tĩnh điện'),(15,23,47,'Kính chịu lực'),(16,23,48,'Việt Nam'),(17,23,49,'2023'),(18,23,50,'10 năm'),(19,23,55,'14.1 Wh/kg'),(20,23,56,'BLDC Inverter'),(21,23,57,'Sợi tổng hợp'),(22,23,57,'Refresh'),(23,23,57,'Đồ trẻ em'),(24,23,57,'Đồ thể thao'),(25,23,57,'Đồ jeans'),(26,23,57,'Đồ hổn hợp'),(27,23,57,'Đồ cotton'),(28,23,57,'Vệ sinh lồng giặc'),(29,23,57,'Vắt'),(30,23,57,'Giặt tiêu chuẩn'),(31,23,57,'Giặt nhẹ'),(32,23,57,'Giặt nhanh 15 phút'),(33,23,57,'Diệt khuẩn'),(34,23,57,'Chăn lông vũ'),(35,23,58,'Lồng giặt lớn 525 mm'),(36,23,58,'Làm mới quần áo bằng hơi nước'),(37,23,58,'Refresh'),(38,23,58,'Giặt nước nóng'),(39,23,58,'Công nghệ giặt hơi nước Steam Wash'),(40,23,58,'Công nghệ cân bằng AI DBT'),(41,23,58,'Vòng đệm cửa kháng khuẩn ABT'),(42,23,58,'Smart Dual Spray tự làm sạch mặt trong cửa'),(43,23,58,'Lồng giặt Pillow'),(44,23,59,'Song ngữ Anh - Việt có núm xoay, nút nhấn và màn hình hiển thị'),(45,23,60,'Khóa trẻ em'),(46,23,60,'Hẹn giờ'),(47,23,60,'Giặc nhanh trong 15p'),(48,23,60,'Chỉnh số vòng vắt'),(49,23,60,'Chỉnh nhiệt độ nước'),(50,23,60,'Xả tăng cường'),(51,23,51,'Cao 85 cm - Ngang 59.5 cm - Sâu 51.8 cm - Nặng 58 kg'),(52,23,52,'127 cm'),(53,23,53,'160 cm'),(54,23,54,'Aqua'),(55,24,1,'1 chiều'),(56,24,2,'có Inverter'),(57,24,3,'1.5HP -> 2.5HP'),(58,24,4,'từ 30 - 120 m³'),(59,24,5,'2025'),(60,24,6,'Thái Lan'),(61,24,7,'3 năm'),(62,24,8,'12 năm'),(63,24,9,'Ống dẫn gas bằng Đồng - Lá tản nhiệt bằng Nhôm'),(64,24,10,'R-32'),(65,24,11,'0.9kWh-> 2.59kWh'),(66,24,12,'3 sao (Hiệu suất năng lượng 4.78)'),(67,24,13,'DC Inverter'),(68,24,14,'Lưới lọc bụi'),(69,24,15,'Đảo gió lên xuống tự động'),(70,24,16,'Turbo'),(71,24,17,'Lớp phủ chống ăn mòn mạ vàng Golden Fin'),(72,24,17,'Khóa trẻ em'),(73,24,17,'Cảm biến nhiệt độ I Feel'),(74,24,17,'Chức năng tự làm sạch dàn lạnh Self Clean'),(75,24,17,'Chức năng tự chẩn đoán lỗi'),(76,24,17,'Chế độ ngủ đêm Sleep cho người già, trẻ nhỏ'),(77,24,17,'Màn hình hiển thị nhiệt độ trên dàn lạnh'),(78,24,17,'Hẹn giờ bật, tắt máy'),(79,24,17,'Nhắc nhở vệ sinh bộ lọc'),(80,24,18,'Dài 77.6 cm - Cao 29.8 cm - Dày 20.2 cm'),(81,24,19,'7.5 kg'),(82,24,20,'Dài 72 cm - Cao 45.5 cm - Dày 27.5 cm'),(83,28,21,'Ngăn đá trên - 2 cánh'),(84,28,22,'264 lít'),(85,28,23,'236 -> 256 lít - 2 - 3 người'),(86,28,24,'53 lít'),(87,28,25,'203 lít'),(88,28,26,'Kim loại phủ sơn bóng giả gương'),(89,28,27,'Kính chịu lực'),(90,28,28,'Ống dẫn gas bằng Nhôm - Lá tản nhiệt bằng Nhôm'),(91,28,29,'2020'),(92,28,30,'Việt Nam'),(93,28,31,'356 kWh/năm'),(94,28,32,'Digital Inverter'),(95,28,33,'Công nghệ làm lạnh vòm All-around Cooling giúp kiểm soát chặt chẽ sự thay đổi nhiệt độ'),(96,28,34,'Ngăn đông mềm -1 độ C Optimal Fresh Zone Ngăn rau củ lớn giữ ẩm Big Box'),(97,28,35,'Bộ lọc than hoạt tính Deodorizer'),(98,28,36,'Ngăn kéo Easy Slide giúp lấy thực phẩm dễ dàng'),(99,28,36,'Hộp đá xoay'),(100,28,37,'Cao 163.5 cm - Ngang 55.5 cm - Sâu 63.7 cm - Nặng 47.5 kg'),(101,28,38,'Samsung'),(102,30,21,'1'),(112,30,31,'11'),(113,30,32,'12'),(114,30,32,'13'),(115,30,36,'14'),(116,30,36,'15'),(117,30,36,'16'),(123,32,112,'Smart Tivi Crystal UHD'),(124,32,113,'44 -> 66 inch'),(125,32,114,'4K (Ultra HD)'),(126,32,115,'Đèn nền: LED viền (Edge LED), Tấm nền: VA LCD'),(127,32,116,'Tizen™'),(128,32,117,'Nhựa'),(129,32,118,'Nhựa'),(130,32,119,'Việt Nam'),(131,32,120,'2023'),(132,32,121,'HDR10+'),(133,32,121,'Dynamic Crystal Color'),(134,32,121,'Kiểm soát đèn nền UHD Dimming cải tiến'),(135,32,121,'Nâng cấp độ tương phản Contrast Enhancer'),(136,32,121,'Chuyển động mượt Motion Xcelerator'),(137,32,121,'Giảm độ trễ chơi game Auto Low Latency Mode (ALLM)'),(138,32,122,'Bộ xử lý Crystal 4K'),(139,32,123,'50 Hz'),(140,32,131,'20W'),(141,32,132,'2 loa'),(142,32,133,'Âm thanh chuyển động theo hình ảnh OTS Lite'),(143,32,134,'Adaptive Sound'),(144,32,134,'Q-Symphony kết hợp loa tivi với loa thanh'),(145,32,135,'Wi-Fi'),(146,32,135,'Cổng mạng LAN'),(147,32,136,'Bluetooth (Kết nối loa, thiết bị di động)'),(148,32,137,'2 cổng USB A'),(149,32,138,'3 cổng HDMI có 1 cổng HDMI eARC (ARC)'),(150,32,139,'3 cổng HDMI có 1 cổng HDMI eARC (ARC)'),(151,32,140,'Ngang 145.09 cm - Cao 89.6 cm - Dày 27.94 cm'),(152,32,141,'21.4 Kg'),(153,32,142,'Ngang 145.09 cm - Cao 83.19 cm - Dày 2.57 cm'),(154,32,143,'20.9 Kg'),(155,32,144,'Samsung'),(164,32,124,'Âm thanh siêu sóng âm'),(165,32,124,'Âm thanh chân thật'),(166,32,125,'Nói chuyện như con người'),(167,31,68,'???????? 1'),(168,31,68,'???????? 1'),(169,31,68,'???????? 1'),(170,33,21,'Tủ lớn - Side by Side - 2 cánh'),(171,33,22,'768 lít'),(172,33,23,'711 lít - Trên 5 người'),(173,33,24,'273 lít'),(174,33,25,'438 lít'),(175,33,26,'Thép Morandi'),(176,33,27,'Kính chịu lực'),(177,33,28,'Ống dẫn gas bằng Sắt và Đồng - Lá tản nhiệt bằng Nhôm'),(178,33,29,'2025'),(179,33,30,'Trung Quốc'),(180,33,31,'660 kWh/năm'),(181,33,32,'Chế độ kỳ nghỉ tiết kiệm điện'),(182,33,32,'Origin Inverter'),(183,33,33,'Luồng khí lạnh đa chiều Multi Air Flow'),(184,33,33,'Công nghệ Surrounding Cooling'),(185,33,34,'Giữ nguyên hương vị với Flexible Zone'),(186,33,35,'Bộ lọc khử mùi PureAir Turbo™'),(187,33,36,'Làm đông cực nhanh Super Freeze'),(188,33,36,'Chuông báo khi quên đóng cửa'),(189,33,36,'Điều khiển từ xa trên ứng dụng TSmartLife'),(190,33,36,'Cảnh báo quên đóng cửa tủ trên ứng dụng'),(191,33,36,'Làm lạnh nhanh Super Cool'),(192,33,37,'Cao 177.5 cm - Ngang 91 cm - Sâu 73.5 cm - Nặng 99 kg'),(193,33,38,'Toshiba'),(194,34,21,'Tủ lớn - Side by Side - 2 cánh'),(195,34,22,'682 lít'),(196,34,23,'646 lít - Trên 5 người'),(197,34,24,'238 lít'),(198,34,25,'408 lít'),(199,34,26,'Thép không gỉ'),(200,34,27,'Kính chịu lực'),(201,34,28,'Ống dẫn gas bằng Đồng - Lá tản nhiệt bằng Nhôm'),(202,34,29,'2023'),(203,34,30,'Trung Quốc'),(204,34,31,'622.9 kWh/năm'),(205,34,32,'Twin Inverter'),(206,34,32,'Chế độ kỳ nghỉ tiết kiệm điện'),(207,34,33,'Làm lạnh gián tiếp'),(208,34,34,'Làm lạnh đa chiều giúp thực phẩm tươi ngon'),(209,34,34,'Công nghệ cân bằng độ ẩm HCS'),(210,34,35,'Kháng khuẩn khử mùi H-DEO Fresh'),(211,34,36,'Đèn LED chiếu sáng'),(212,34,36,'Làm lạnh nhanh'),(213,34,36,'Hộp đá xoay di động'),(214,34,36,'Có khóa'),(215,34,36,'Làm đông nhanh'),(216,34,37,'Cao 177.5 cm - Ngang 90.5 cm - Sâu 72.6 cm - Nặng 92 kg'),(217,34,38,'Aqua'),(218,35,21,'Mini - 1 cánh'),(219,35,22,'93 lít'),(220,35,23,'90 lít - 1 - 2 người'),(221,35,24,'14 lít'),(222,35,25,'76 lít'),(223,35,26,'Mặt thép'),(224,35,27,'Kính chịu lực'),(225,35,28,'Ống dẫn gas bằng Đồng - Lá tản nhiệt bằng Nhôm'),(226,35,29,'2024'),(227,35,30,'Việt Nam'),(228,35,31,'214 kWh/năm'),(229,35,33,'Trực tiếp'),(230,35,36,'Ngăn đá có nắp đậy'),(231,35,37,'Cao 76.9 cm - Ngang 47 cm - Sâu 44.4 cm - Nặng 18 kg'),(232,35,38,'Aqua'),(233,36,21,'Ngăn đá trên - 2 cánh'),(234,36,22,'181 -> 198 lít'),(235,36,23,'2 - 3 người'),(236,36,24,'49 lít'),(237,36,25,'132 lít'),(238,36,26,'Kim loại'),(239,36,27,'Kính cường lực'),(240,36,28,'Ống dẫn gas bằng Sắt và Đồng - Lá tản nhiệt bằng Nhôm'),(241,36,29,'2024'),(242,36,30,'Trung Quốc'),(243,36,31,'249 kWh/năm'),(244,36,32,'Inverter'),(245,36,33,'Làm lạnh đa chiều'),(246,36,35,'Bộ lọc khử mùi than hoạt tính Nano Ag+'),(247,36,36,'Đèn LED chiếu sáng'),(248,36,36,'Khay đá di động'),(249,36,37,'Cao 134 cm - Ngang 54.5 cm - Sâu 54 cm - Nặng 42 kg'),(250,36,38,'Sharp.'),(251,37,112,'Google Tivi'),(252,37,113,'32 inch'),(253,37,114,'HD'),(254,37,115,'Đèn nền: LED nền (Direct LED), Tấm nền: LCD'),(255,37,116,'Google TV'),(256,37,117,'Nhựa'),(257,37,118,'Nhựa'),(258,37,119,'Việt Nam'),(259,37,120,'Việt Nam'),(260,37,121,'Màu sắc sống động Live Color'),(261,37,121,'Nâng cấp hình ảnh X-Reality PRO'),(262,37,121,'Chuyển động mượt Motionflow XR 200'),(263,37,123,'50 Hz'),(264,37,135,'Wi-Fi'),(265,37,135,'Cổng mạng LAN'),(266,37,136,'Bluetooth (Kết nối loa, thiết bị di động)'),(267,37,137,'2 cổng USB A'),(268,37,138,'2 cổng USB A'),(269,37,139,'1 cổng 3.5 mm, 1 cổng Optical (Digital Audio), 1 cổng ARC'),(270,37,140,'Ngang 73 cm - Cao 46.5 cm - Dày 18.8 cm'),(271,37,141,'5 kg'),(272,37,142,'Ngang 73 cm - Cao 43.7 cm - Dày 7.5 cm'),(273,37,143,'4.8 kg'),(274,37,144,'Sony'),(275,37,145,'Ứng dụng Google TV'),(276,37,146,'Tìm kiếm giọng nói trên YouTube bằng tiếng Việt'),(277,37,146,'Google Assistant có tiếng Việt'),(278,37,147,'Chromecast'),(279,37,148,'Remote tích hợp micro tìm kiếm bằng giọng nói (RMF-TX520P)'),(280,37,149,'YouTube'),(281,37,149,'Netflix'),(282,37,149,'Galaxy Play (Fim+)'),(283,37,149,'Clip TV'),(284,37,149,'FPT Play'),(285,37,149,'VTVcab ON'),(286,37,149,'VieON'),(287,37,150,'20W'),(288,37,151,'2 loa'),(289,37,152,'Bộ khuếch đại âm thanh S-Master Digital Amplifier'),(290,38,112,'Smart Tivi QLED'),(291,38,113,'65 inch'),(292,38,114,'4K (Ultra HD)'),(293,38,115,'Đèn nền: LED nền (Direct LED), Tấm nền: IPS LCD'),(294,38,116,'VIDAA U9'),(295,38,117,'Nhựa'),(296,38,118,'Nhựa'),(297,38,119,'Việt Nam'),(298,38,120,'2025'),(299,38,121,'HDR10+'),(300,38,121,'HDR10'),(301,38,121,'Dolby Vision'),(302,38,121,'Quantum Dot'),(303,38,121,'Công nghệ tinh chỉnh thông minh AI Picture Optimizer'),(304,38,121,'Đồng bộ khung hình/tần số quét chơi game VRR'),(305,38,121,'Giảm độ trễ chơi game Auto Low Latency Mode (ALLM)'),(306,38,121,'AI 4K Clarity'),(307,38,121,'AI HDR Enhancer'),(308,38,121,'AI Motion Enhancer'),(309,38,121,'Game Deck'),(310,38,122,'Bộ xử lý Regza Engine ZR'),(311,38,123,'60 Hz'),(312,38,135,'Wi-Fi'),(313,38,135,'Cổng mạng LAN'),(314,38,136,'Bluetooth 5.0'),(315,38,137,'2 cổng USB A'),(316,38,138,'3 cổng HDMI có 1 cổng HDMI eARC (ARC), 1 cổng Composite'),(317,38,139,'1 cổng 3.5 mm, 1 cổng Optical (Digital Audio), 1 cổng eARC (ARC)'),(318,38,140,'Ngang 145.2 cm - Cao 89.3 cm - Dày 31.8 cm'),(319,38,141,'13.3 kg'),(320,38,142,'13.3 kg'),(321,38,143,'13.1 kg'),(322,38,144,'Toshiba.'),(323,38,145,'Ứng dụng VIDAA'),(324,38,146,'Tìm kiếm giọng nói trên YouTube bằng tiếng Việt'),(325,38,146,'Tìm kiếm bằng giọng nói qua ứng dụng VIDAA kết nối trên điện thoại'),(326,38,147,'AirPlay 2'),(327,38,147,'DLNA'),(328,38,147,'Miracast'),(329,38,147,'Content Sharing'),(330,38,148,'Remote tích hợp micro tìm kiếm bằng giọng nói'),(331,38,149,'YouTube'),(332,38,149,'Netflix'),(333,38,149,'FPT Play'),(334,38,149,'TV 360'),(335,38,149,'VieON'),(336,38,149,'K+'),(337,38,149,'Tiktok'),(338,38,150,'24W'),(339,38,151,'2 loa'),(340,38,152,'360 Surround Upscaling'),(341,38,152,'Real Sound Adjuster'),(342,29,21,' Multi Door - 4 cánh'),(343,29,22,'665 lít'),(344,29,23,'636 lít - Trên 5 người'),(345,29,24,' 250 lít'),(346,29,25,' 386 lít'),(347,29,26,'Mặt gương soi'),(348,29,27,'Kính cường lực'),(349,29,28,'Ống dẫn gas bằng Đồng & Nhôm - Lá tản nhiệt bằng Nhôm Aluminium'),(350,29,29,'2024'),(351,29,30,'Hàn Quốc'),(352,29,31,'729 kWh/năm'),(353,29,32,'Digital Inverter'),(354,29,32,'Công nghệ SmartThings AI Energy'),(355,29,33,'Làm lạnh chuyên sâu - Precise Cooling-Fridge'),(356,29,33,'Làm lạnh chuyên sâu - Precise Cooling-Freezer'),(357,29,33,'3 Dàn lạnh độc lập Triple Cooling giúp hơi lạnh lan tỏa đều'),(358,29,34,'Ngăn FlexZone 5 chế độ chuyển đổi linh hoạt'),(359,29,34,'Tấm kim loại Metal Cooling giúp giữ lạnh hiệu quả và hạn chế tình trạng mất nhiệt'),(360,29,35,'Hệ thống lọc UV Deodorizing'),(361,29,36,'Đèn LED chiếu sáng'),(362,29,36,'Điều khiển bằng giọng nói với Bixby Voice'),(363,29,36,'Tự động mở cửa chỉ với một chạm'),(364,29,36,'Quầy Minibar Beverage Center'),(365,29,36,'Quản lý thực phẩm thông minh - AI Vision Inside'),(366,29,36,'Quản lí thông minh SmartThings'),(367,29,36,'Màn hình AI Family Hub™+ 32 inch'),(368,29,36,'Làm lạnh nhanh'),(369,29,36,'Bộ lọc nước loại bỏ tạp chất'),(370,29,36,'Bình tự động làm đầy - Auto Fill Pitcher'),(371,29,36,'Chuông báo khi quên đóng cửa'),(372,29,36,'Làm đông nhanh'),(373,29,36,'Hộp đá xoay'),(374,29,36,'Ngăn lấy nước bên trong hạn chế vi khuẩn'),(375,29,37,'Cao 185.3 cm - Ngang 91.2 cm - Sâu 73.1 cm - Nặng 159 kg'),(376,29,38,'Samsung'),(377,39,67,'iOS 18'),(378,39,68,'Apple A18 6 nhân'),(379,39,69,'Hãng không công bố'),(380,39,70,'Apple GPU 4 nhân'),(381,39,71,'không hổ trợ'),(382,39,72,'Không giới hạn'),(383,39,73,'8 GB'),(384,39,74,'256 GB'),(385,39,75,'241 GB'),(386,39,76,'48 MP'),(387,39,77,'HD 720p@30fps'),(388,39,77,'FullHD 1080p@60fps'),(389,39,77,'FullHD 1080p@30fps'),(390,39,77,'FullHD 1080p@25fps'),(391,39,77,'FullHD 1080p@240fps'),(392,39,77,'FullHD 1080p@120fps'),(393,39,77,'4K 2160p@60fps'),(394,39,77,'4K 2160p@30fps'),(395,39,77,'4K 2160p@25fps'),(396,39,77,'4K 2160p@24fps'),(397,39,78,'Có'),(398,39,79,'Zoom quang học'),(399,39,79,'Zoom kỹ thuật số'),(400,39,79,'Xóa phông'),(401,39,79,'Trôi nhanh thời gian (Time Lapse)'),(402,39,79,'Toàn cảnh (Panorama)'),(403,39,79,'Smart HDR 5'),(404,39,79,'Quay chậm (Slow Motion)'),(405,39,79,'Live Photos'),(406,39,79,'Gắn thẻ địa lý (Geotagging)'),(407,39,79,'Deep Fusion'),(408,39,79,'Chụp ảnh liên tục'),(409,39,79,'Chống rung điện tử kỹ thuật số (EIS)'),(410,39,79,'Chống rung quang học (OIS)'),(411,39,79,'Ban đêm (Night Mode)'),(412,39,79,'Photonic Engine'),(413,39,80,'12 MP'),(414,39,81,'Xóa phông'),(415,39,81,'Trôi nhanh thời gian (Time Lapse)'),(416,39,81,'Retina Flash'),(417,39,81,'Quay video Full HD'),(418,39,81,'Quay video 4K'),(419,39,81,'Quay chậm (Slow Motion)'),(420,39,81,'Nhãn dán (AR Stickers)'),(421,39,81,'Live Photos'),(422,39,81,'Deep Fusion'),(423,39,81,'Chụp ảnh liên tục'),(424,39,81,'Chụp đêm'),(425,39,81,'Chống rung điện tử kỹ thuật số (EIS)'),(426,39,81,'Photonic Engine'),(427,39,82,'OLED'),(428,39,83,'Super Retina XDR (1170 x 2532 Pixels)'),(429,39,84,'Super Retina XDR (1170 x 2532 Pixels)'),(430,39,85,'Super Retina XDR (1170 x 2532 Pixels)'),(431,39,86,'Kính cường lực Ceramic Shield'),(432,39,87,'26 giờ'),(433,39,88,'Li-Ion'),(434,39,89,'20 W'),(435,39,91,'Tiết kiệm pin'),(436,39,91,'Sạc pin nhanh'),(437,39,91,'Sạc không dây'),(438,39,92,'Mở khoá khuôn mặt Face ID'),(439,39,93,'Âm thanh Dolby Atmos'),(440,39,93,'Phát hiện va chạm (Crash Detection)'),(441,39,93,'HDR10+'),(442,39,93,'HDR10'),(443,39,93,'DCI-P3'),(444,39,93,'Công nghệ âm thanh Dolby Digital Plus'),(445,39,93,'Công nghệ hình ảnh Dolby Digital'),(446,39,93,'Công nghệ HLG'),(447,39,93,'Công nghệ hình ảnh Dolby Vision'),(448,39,94,'IP68'),(449,39,95,'Ghi âm mặc định'),(450,39,95,'Ghi âm cuộc gọi'),(451,39,97,'MP4'),(452,39,97,'HEVC'),(453,39,98,'MP3'),(454,39,98,'FLAC'),(455,39,98,'Apple Lossless'),(456,39,98,'AAC'),(457,39,99,'Hỗ trợ 5G'),(458,39,100,'1 Nano SIM & 1 eSIM'),(459,39,101,'Wi-Fi'),(460,39,101,'Wi-Fi hotspot'),(461,39,101,'Wi-Fi 6'),(462,39,101,'Dual-band (2.4 GHz/5 GHz)'),(463,39,101,'6 GHz'),(464,39,102,'QZSS'),(465,39,102,'NavIC'),(466,39,102,'iBeacon'),(467,39,102,'GPS'),(468,39,102,'GLONASS'),(469,39,102,'GALILEO'),(470,39,102,'BEIDOU'),(471,39,103,'v5.3'),(472,39,104,'Type-C'),(473,39,105,'Type-C'),(474,39,106,'NFC'),(475,39,107,'Nguyên khối'),(476,39,108,'Khung nhôm & Mặt lưng kính cường lực'),(477,39,109,'Dài 146.7 mm - Ngang 71.5 mm - Dày 7.8 mm - Nặng 167 g'),(478,39,110,'02/2025'),(479,39,111,'iPhone (Apple)'),(480,40,39,'Cửa trước'),(481,40,40,'Lồng ngang'),(482,40,41,'10 - 20 Kg'),(483,40,42,'Từ 5 - 7 người'),(484,40,43,'Truyền động trực tiếp'),(485,40,44,'1400 vòng/phút'),(486,40,45,'Thép không gỉ'),(487,40,46,'Kim loại sơn tĩnh điện'),(488,40,47,'Kính chịu lực'),(489,40,48,'Việt Nam'),(490,40,49,'2023'),(491,40,50,'10 năm'),(492,40,55,'20 Wh/kg'),(493,40,56,'Công nghệ Inverter'),(494,40,57,'Vải bông +'),(495,40,57,'Vải bông'),(496,40,57,'TurboWash 59'),(497,40,57,'Đồ tinh xảo'),(498,40,57,'Đồ thể thao'),(499,40,57,'Đồ hỗn hợp'),(500,40,57,'Vệ sinh lồng giặt'),(501,40,57,'Giặt tay + đồ len'),(502,40,57,'Giặt nhẹ'),(503,40,57,'Giặt nhanh 14 phút'),(504,40,57,'Giặt ngừa dị ứng'),(505,40,57,'Giặt hơi nước đồ trẻ em'),(506,40,57,'Chu trình tải về'),(507,40,57,'Giặt ga giường'),(508,40,58,'Giặt nước nóng'),(509,40,58,'Giặt hơi nước'),(510,40,58,'Công nghệ AI DD bảo vệ sợi vải'),(511,40,58,'Công nghệ giặt tiết kiệm TurboWash'),(512,40,59,'Song ngữ Anh - Việt có núm xoay, nút nhấn, cảm ứng, màn hình hiển thị'),(513,40,60,'Vệ sinh lồng giặt'),(514,40,60,'Thêm đồ trong khi giặt'),(515,40,60,'Khóa trẻ em'),(516,40,60,'Hẹn giờ giặt'),(517,40,60,'Giặt sơ'),(518,40,60,'Giũ+'),(519,40,60,'Chỉnh số vòng vắt'),(520,40,60,'Chỉnh nhiệt độ nước'),(521,40,60,'Chẩn đoán lỗi'),(522,40,60,'Smart Diagnosis'),(523,40,60,'Âm báo Giặt kỹ'),(524,40,60,'Cho phép điều khiển máy giặt từ xa qua ứng dụng LG ThinQ'),(525,40,51,'Cao 85 cm - Ngang 59.2 cm - Sâu 60 cm - Nặng 70 kg'),(526,40,52,'137 cm'),(527,40,53,'183 cm'),(528,40,54,'LG');
+/*!40000 ALTER TABLE `productspecifications` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `productvariants`
+--
+
+DROP TABLE IF EXISTS `productvariants`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `productvariants` (
+  `variant_id` int NOT NULL AUTO_INCREMENT,
+  `product_id` int NOT NULL,
+  `variant_name` varchar(255) NOT NULL DEFAULT 'Unknow',
+  `price` decimal(10,2) NOT NULL,
+  `stock_quantity` int NOT NULL DEFAULT '0',
+  `variant_sku` varchar(255) NOT NULL,
+  `image_url` varchar(255) DEFAULT NULL,
+  `item_status` varchar(50) DEFAULT 'in_stock',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`variant_id`),
+  UNIQUE KEY `variant_sku` (`variant_sku`),
+  KEY `product_id` (`product_id`),
+  CONSTRAINT `productvariants_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `productvariants`
+--
+
+LOCK TABLES `productvariants` WRITE;
+/*!40000 ALTER TABLE `productvariants` DISABLE KEYS */;
+INSERT INTO `productvariants` VALUES (35,23,'Máy giặt Aqua Inverter 8.5 KG AQD-A952J BK',6490000.00,50,'Máy giặt Aqua Inverter AQD-A952J BK_8.5 KG-49a1df34-120446','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1753114679453_36f1o1jviyi.jpg?alt=media&token=32000ada-9adb-41c5-aa79-14c07c04243b','in_stock','2025-07-21 16:18:01','2025-08-07 10:01:24'),(36,23,'Máy giặt Aqua Inverter 9.5 KG AQD-A952J BK',7890000.00,50,'Máy giặt Aqua Inverter AQD-A952J BK_9.5 KG-f6dd0b69-120446','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1753114679454_fhl42y73hgt.jpg?alt=media&token=4253aac1-b197-4703-a231-1735924c7fb7','in_stock','2025-07-21 16:18:01','2025-08-07 10:01:24'),(37,24,'Máy lạnh AUX Inverter 1HP AW10CAA4DI-3VN',6590000.00,41,'Máy lạnh AUX Inverter AW10CAA4DI-3VN_1HP-36153999-763797','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1753253055986_jnd3nb4nsr.jpg?alt=media&token=e43f35e4-afb8-4520-8416-f8e3ba8e04f6','in_stock','2025-07-23 06:44:18','2025-09-24 07:09:23'),(38,24,'Máy lạnh AUX Inverter 1.5HP AW10CAA4DI-3VN',7590000.00,48,'Máy lạnh AUX Inverter AW10CAA4DI-3VN_1.5HP-3cc98b3c-763797','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1753253055987_50vvl65bhh3.jpg?alt=media&token=6e255164-7f42-474b-b58d-643ce54bc819','in_stock','2025-07-23 06:44:18','2025-08-15 15:30:40'),(39,24,'Máy lạnh AUX Inverter 2HP AW10CAA4DI-3VN',14690000.00,47,'Máy lạnh AUX Inverter AW10CAA4DI-3VN_2HP-3a99055a-763797','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1753253055988_yb557mbkwkg.jpg?alt=media&token=a69b564e-4020-4610-8985-7e868b0fbbef','in_stock','2025-07-23 06:44:18','2025-08-09 10:50:46'),(40,24,'Máy lạnh AUX Inverter 2.5HP AW10CAA4DI-3VN',17590000.00,48,'Máy lạnh AUX Inverter AW10CAA4DI-3VN_2.5HP-6f63facb-763797','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1753253055988_52hqz15ange.jpg?alt=media&token=a6edfd09-cb9b-43c2-9e4e-3eb45bb6ad41','in_stock','2025-07-23 06:44:18','2025-08-11 10:34:26'),(47,28,'Tủ lạnh Samsung Inverter RT22M4032BU/SV 236 lít',5900000.00,50,'Tủ lạnh Samsung Inverter RT22M4032BU/SV_236 lít_nâu-17085d41-995204','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1753558645708_067kxmthq77c.jpg?alt=media&token=558ef614-a49b-4486-a8e4-f35bb41474f5','in_stock','2025-07-26 19:37:27','2025-08-07 10:01:50'),(48,28,'Tủ lạnh Samsung Inverter RT22M4032BU/SV 236 lít ',5870000.00,50,'Tủ lạnh Samsung Inverter RT22M4032BU/SV_236 lít_đen-0998d498-995204','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1753558645708_kewg579qx9.jpg?alt=media&token=36a7b787-9b9a-4207-ba7f-c15cd4985364','in_stock','2025-07-26 19:37:27','2025-08-07 10:01:50'),(49,28,'Tủ lạnh Samsung Inverter RT22M4032BU/SV 256 lít ',6490000.00,49,'Tủ lạnh Samsung Inverter RT22M4032BU/SV_256 lít_đen-5ae3c939-995204','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1753558645709_1t5loy2uukg.jpg?alt=media&token=4aac6ccb-1030-4467-a5f3-1e74d65d686f','in_stock','2025-07-26 19:37:27','2025-08-08 07:41:42'),(50,29,'Tủ lạnh Samsung Inverter 200 lít Multi Door Bespoke RF65DB990012SV',76000000.00,46,'dp-h01 ling yao 1/100_200hp-3975045d-376830','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1755297648236_l37e4najkej.jpg?alt=media&token=86263cf7-95c4-4f2f-b5f5-d383a63866b6','in_stock','2025-08-01 16:57:30','2025-08-15 22:40:49'),(52,30,'Turn X Gundam ',6490000.00,7,'Turn X Gundam_200hp-3235952e-586612','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1754111709713_8crsl51xrue.jpg?alt=media&token=89840ef7-d24f-45c8-aa5a-da3300e110db','in_stock','2025-08-02 05:15:12','2025-09-24 07:09:27'),(53,30,'Turn X  ',5990000.00,15,'Turn X Gundam_300hp-90149b93-586612','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1754111709714_usyta2q7nnf.jpg?alt=media&token=c22cd930-76d3-449e-b7f0-a8dee2a16518','in_stock','2025-08-02 05:15:12','2025-09-24 07:09:27'),(54,31,' Edda=',10000000.00,0,'Eddas Technologies 1/100 ???????? _Xanh_20GB-322011e9-908446','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1755299282260_5d9fgl59l1o.png?alt=media&token=abe8eaa8-20ce-411b-a872-33149f14e9ac','out_of_stock','2025-08-02 11:27:03','2025-08-19 08:19:58'),(55,31,' Eddas Tech===',30000000.00,0,'Eddas Technologies 1/100 ???????? _Đỏ_20GB-9b0eda75-908446','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1754134020311_3wxojk0ror7.jpg?alt=media&token=646eb755-b942-4ecb-808e-a88660722c28','out_of_stock','2025-08-02 11:27:03','2025-08-19 08:20:15'),(56,31,' Eddas [op[pog[0-=ư0-ươ0-ơ',32000000.00,49,'Eddas Technologies 1/100 ???????? _Đỏ_30GB-ca88a89e-908446','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1754134020312_btv3ogzr3tp.jpg?alt=media&token=cdac2d12-a8d9-4896-8d71-6c3e52d60268','in_stock','2025-08-02 11:27:03','2025-08-15 23:08:04'),(57,32,'Smart Tivi Crystal UHD Samsung 4K UA43CU8000 44 inch',9990000.00,50,'Smart Tivi Crystal UHD Samsung 4K UA43CU8000_44 inch-58aa55ff-350597','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1754922702906_m4h7u7l1358.jpg?alt=media&token=2b0d44a7-edc9-4c56-93d8-c9ca3749cca5','in_stock','2025-08-10 22:44:05','2025-08-11 14:31:44'),(58,32,'Smart Tivi Crystal UHD Samsung 4K UA43CU8000 55 inch',12590000.00,45,'Smart Tivi Crystal UHD Samsung 4K UA43CU8000_55 inch-22741740-350597','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1754922702907_08f1y3f3vbk.jpg?alt=media&token=7af881eb-e3d3-4ab9-b655-ffbac554a24e','in_stock','2025-08-10 22:44:05','2025-09-24 07:09:28'),(59,32,'Smart Tivi Crystal UHD Samsung 4K UA43CU8000 66 inch',13990000.00,49,'Smart Tivi Crystal UHD Samsung 4K UA43CU8000_66 inch-d8f9aa0b-350597','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1754865843443_yti4odwnfmh.jpg?alt=media&token=bf44bd74-2c79-48a9-921d-7d41fc356124','in_stock','2025-08-10 22:44:05','2025-08-15 15:27:52'),(60,33,'Tủ lạnh Toshiba Inverter Side By Side GR-RS910WI-PMV(06)-MG711 lít',21790000.00,47,'Tủ lạnh Toshiba Inverter Side By Side GR-RS910WI-PMV(06)-MG_711 lít-1eeb19b3-662854','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1755291797861_nftocuger1c.jpg?alt=media&token=eaf82d5e-2e49-495a-8a36-f0987d3ea107','in_stock','2025-08-15 21:03:19','2025-08-15 21:03:19'),(61,34,'Tủ lạnh Hitachi Inverter Side By Side AQR-S682XA(SLB)646 lít',16610000.00,50,'Tủ lạnh Aqua Inverter Side By Side AQR-S682XA(SLB)_646 lít-5da65258-983523','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1755292142199_zy117berqba.jpg?alt=media&token=6e7a6ac1-0ffb-4be3-9f48-90958a362dfd','in_stock','2025-08-15 21:09:03','2025-08-19 08:53:27'),(62,35,'Tủ lạnh Aqua AQR-D100FA(BS)90 lít',3390000.00,50,'Tủ lạnh Aqua AQR-D100FA(BS)_90 lít-0b7d287a-310845','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1755292427491_vbc6519inb.jpg?alt=media&token=23458f31-693e-4f39-b1e5-9ce7835ab5c7','in_stock','2025-08-15 21:13:49','2025-08-15 21:13:49'),(63,36,'Tủ lạnh Sharp Inverter SJ-X198V-SL181 lít xám',4880000.00,50,'Tủ lạnh Sharp Inverter SJ-X198V-SL_181 lít_xám-118d8a8b-279372','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1755293441501_oprblolkdw.jpg?alt=media&token=e9b6c56a-1622-4039-92bf-600e00f009d5','in_stock','2025-08-15 21:30:57','2025-08-15 21:30:57'),(64,36,'Tủ lạnh Sharp Inverter SJ-X198V-SL181 lít Đen',5088000.00,48,'Tủ lạnh Sharp Inverter SJ-X198V-SL_181 lít_Đen-5cbb4687-279372','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1755293441502_6gatn7d3ljl.jpg?alt=media&token=de7a97b2-46d4-45a7-9e1a-c6f960803262','in_stock','2025-08-15 21:30:57','2025-09-24 07:09:24'),(65,37,'Google Tivi Sony  KD-32W830K32 inch',7190000.00,50,'Google Tivi Sony  KD-32W830K_32 inch-b87df711-766693','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1755294285533_9lw8odkiyse.jpg?alt=media&token=78297857-aaf4-4b37-856c-2db0199e687c','in_stock','2025-08-15 21:44:47','2025-08-15 21:44:47'),(66,38,'Smart Tivi QLED Toshiba AI 4K 65M450RP55 inch',13990000.00,50,'Smart Tivi QLED Toshiba AI 4K 65M450RP_55 inch-6794e0a8-794690','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1755295125809_neu12g9uach.jpg?alt=media&token=c867d260-6b74-48aa-9977-97b38d67341c','in_stock','2025-08-15 21:58:47','2025-08-15 21:58:47'),(67,38,'Smart Tivi QLED Toshiba AI 4K 65M450RP65 inch',17990000.00,50,'Smart Tivi QLED Toshiba AI 4K 65M450RP_65 inch-82cc8bd1-794690','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1755295125810_6l2no975519.jpg?alt=media&token=26bb3b5a-2ca2-4d79-89a5-e0754274ed76','in_stock','2025-08-15 21:58:47','2025-08-15 21:58:47'),(68,39,'Điện thoại iPhone 16e 128GB Đen',10000000.00,20,'Điện thoại iPhone 16e _128GB_Đen-934d1f82-132836','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1755602859431_53vsw2qnfb6.jpg?alt=media&token=69bbb288-0c32-4f36-aab1-4b83c86f1d77','in_stock','2025-08-19 11:27:41','2025-08-19 11:27:41'),(69,39,'Điện thoại iPhone 16e 256GB Đen',25000000.00,20,'Điện thoại iPhone 16e _256GB_Đen-65c7c251-132836','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1755602859432_otbvkgm80oj.jpg?alt=media&token=98ce66fd-7224-4949-9093-9686e325041c','in_stock','2025-08-19 11:27:41','2025-08-19 11:27:41'),(70,39,'Điện thoại iPhone 16e 256GB Trắng',27000000.00,20,'Điện thoại iPhone 16e _256GB_Trắng-7ff45e57-132836','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1755602859433_g7q8oi5czk6.jpg?alt=media&token=b5780f1c-ec36-4c65-a4b8-83e11e15270a','in_stock','2025-08-19 11:27:41','2025-08-19 11:27:41'),(71,40,'Máy giặt LG AI DD Inverter FV1410S4B10KG Trắng',10000000.00,20,'Máy giặt LG AI DD Inverter FV1410S4B_10KG_Trắng-8042542b-602462','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1755604110890_e26u8bwbet.jpg?alt=media&token=29ffedd0-9548-43c9-93f0-06dc1b58bcfc','in_stock','2025-08-19 11:48:32','2025-08-19 11:48:32'),(72,40,'Máy giặt LG AI DD Inverter FV1410S4B10KG Đen',11000000.00,20,'Máy giặt LG AI DD Inverter FV1410S4B_10KG_Đen-87314065-602462','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1755604110891_uslf5nw2pwe.jpg?alt=media&token=883eeab9-71e9-4610-8619-c05fd943f7d2','in_stock','2025-08-19 11:48:32','2025-08-19 11:48:32'),(73,40,'Máy giặt LG AI DD Inverter FV1410S4B20KG Trắng',15000000.00,20,'Máy giặt LG AI DD Inverter FV1410S4B_20KG_Trắng-594ec8f7-602462','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1755604110892_ytakpamc3zp.jpg?alt=media&token=ebb8b6aa-19ec-4041-9907-cab125b1afc2','in_stock','2025-08-19 11:48:32','2025-08-19 11:48:32'),(74,40,'Máy giặt LG AI DD Inverter FV1410S4B20KG Đen',17000000.00,20,'Máy giặt LG AI DD Inverter FV1410S4B_20KG_Đen-307db6b6-602462','https://firebasestorage.googleapis.com/v0/b/smarthome-img-storage.firebasestorage.app/o/product%2Fvariant%2F1755604110892_yi1v7lxr48c.jpg?alt=media&token=6830a8ed-6908-4532-9f99-502113bb8272','in_stock','2025-08-19 11:48:32','2025-08-19 11:48:32');
+/*!40000 ALTER TABLE `productvariants` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reviews`
+--
+
+DROP TABLE IF EXISTS `reviews`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `reviews` (
+  `review_id` int NOT NULL AUTO_INCREMENT,
+  `order_item_id` int DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  `session_id` varchar(128) DEFAULT NULL,
+  `product_id` int NOT NULL,
+  `rating` int NOT NULL,
+  `comment_text` text,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`review_id`),
+  KEY `order_item_id` (`order_item_id`),
+  KEY `user_id` (`user_id`),
+  KEY `product_id` (`product_id`),
+  CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`order_item_id`) REFERENCES `orderitems` (`order_item_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `reviews_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `reviews_chk_1` CHECK (((`rating` >= 1) and (`rating` <= 5)))
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reviews`
+--
+
+LOCK TABLES `reviews` WRITE;
+/*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
+INSERT INTO `reviews` VALUES (1,74,2,NULL,31,4,NULL,'2025-10-11 06:43:16','2025-10-11 06:44:28'),(2,72,2,NULL,30,3,'','2025-10-11 15:13:50','2025-10-11 15:13:50'),(3,71,2,NULL,30,5,'hahaha','2025-10-11 15:14:57','2025-10-11 15:14:57');
+/*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `roles` (
+  `role_id` int NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(50) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`role_id`),
+  UNIQUE KEY `role_name` (`role_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `roles`
+--
+
+LOCK TABLES `roles` WRITE;
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (1,'admin',NULL),(2,'customer',NULL);
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sequelizemeta`
+--
+
+DROP TABLE IF EXISTS `sequelizemeta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sequelizemeta` (
+  `name` varchar(255) COLLATE utf8mb3_unicode_ci NOT NULL,
+  PRIMARY KEY (`name`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sequelizemeta`
+--
+
+LOCK TABLES `sequelizemeta` WRITE;
+/*!40000 ALTER TABLE `sequelizemeta` DISABLE KEYS */;
+INSERT INTO `sequelizemeta` VALUES ('20251025024644-add_unique_index_to_product_events.js'),('271020251225-remove_zold_indices_from_product_events.js'),('update_product_events_unique_constraint_with_event_type.js');
+/*!40000 ALTER TABLE `sequelizemeta` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `servicepackages`
+--
+
+DROP TABLE IF EXISTS `servicepackages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `servicepackages` (
+  `package_id` int NOT NULL AUTO_INCREMENT,
+  `variant_id` int NOT NULL,
+  `package_name` varchar(255) NOT NULL,
+  `display_order` int DEFAULT NULL,
+  `description` text,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`package_id`),
+  UNIQUE KEY `variant_id` (`variant_id`,`package_name`),
+  CONSTRAINT `fk_servicepackage_variant` FOREIGN KEY (`variant_id`) REFERENCES `productvariants` (`variant_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `servicepackages`
+--
+
+LOCK TABLES `servicepackages` WRITE;
+/*!40000 ALTER TABLE `servicepackages` DISABLE KEYS */;
+INSERT INTO `servicepackages` VALUES (22,35,'GÓI 1',100000,NULL,'2025-07-21 16:18:01','2025-07-21 16:18:01'),(23,35,'GÓI 2',200000,NULL,'2025-07-21 16:18:01','2025-07-21 16:18:01'),(24,36,'GÓI 1',100000,NULL,'2025-07-21 16:18:01','2025-07-21 16:18:01'),(25,36,'GÓI 2',200000,NULL,'2025-07-21 16:18:01','2025-07-21 16:18:01'),(26,37,'GÓI 1',100000,NULL,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(27,37,'GÓI 2',200000,NULL,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(28,37,'GÓI 3',300000,NULL,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(29,38,'GÓI 1',100000,NULL,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(30,38,'GÓI 2',200000,NULL,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(31,38,'GÓI 3',300000,NULL,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(32,39,'GÓI 1',100000,NULL,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(33,39,'GÓI 2',200000,NULL,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(34,39,'GÓI 3',300000,NULL,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(35,40,'GÓI 1',100000,NULL,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(36,40,'GÓI 2',200000,NULL,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(37,40,'GÓI 3',300000,NULL,'2025-07-23 06:44:18','2025-07-23 06:44:18'),(38,47,'GÓI 1',100000,NULL,'2025-07-26 19:37:27','2025-07-26 19:37:27'),(39,47,'GÓI 2',200000,NULL,'2025-07-26 19:37:27','2025-07-26 19:37:27'),(40,48,'GÓI 1',100000,NULL,'2025-07-26 19:37:27','2025-07-26 19:37:27'),(41,48,'GÓI 2',200000,NULL,'2025-07-26 19:37:27','2025-07-26 19:37:27'),(42,49,'GÓI 1',100000,NULL,'2025-07-26 19:37:27','2025-07-26 19:37:27'),(43,49,'GÓI 2',200000,NULL,'2025-07-26 19:37:27','2025-07-26 19:37:27'),(44,50,'GÓI 1',100000,NULL,'2025-08-01 16:57:30','2025-08-01 16:57:30'),(46,52,'GÓI 1',100000,NULL,'2025-08-02 05:15:12','2025-08-02 05:15:12'),(47,52,'GÓI 2',200000,NULL,'2025-08-02 05:15:12','2025-08-02 05:15:12'),(48,53,'GÓI 1',100000,NULL,'2025-08-02 05:15:12','2025-08-02 05:15:12'),(49,53,'GÓI 2',200000,NULL,'2025-08-02 05:15:12','2025-08-02 05:15:12'),(56,56,'GÓI 1',NULL,NULL,'2025-08-15 09:11:07','2025-08-15 09:11:07'),(57,61,'GÓI 1',100000,NULL,'2025-08-15 21:09:03','2025-08-15 21:09:03'),(58,61,'GÓI 2',200000,NULL,'2025-08-15 21:09:03','2025-08-15 21:09:03'),(59,62,'GÓI 1',100000,NULL,'2025-08-15 21:13:49','2025-08-15 21:13:49'),(60,62,'GÓI 2',200000,NULL,'2025-08-15 21:13:49','2025-08-15 21:13:49'),(61,65,'GÓI 1',100000,NULL,'2025-08-15 21:44:47','2025-08-15 21:44:47'),(62,65,'GÓI 2',200000,NULL,'2025-08-15 21:44:47','2025-08-15 21:44:47'),(63,66,'GÓI 1',100000,NULL,'2025-08-15 21:58:47','2025-08-15 21:58:47'),(64,66,'GÓI 2',200000,NULL,'2025-08-15 21:58:47','2025-08-15 21:58:47'),(65,67,'GÓI 1',100000,NULL,'2025-08-15 21:58:47','2025-08-15 21:58:47'),(66,67,'GÓI 2',200000,NULL,'2025-08-15 21:58:47','2025-08-15 21:58:47'),(67,68,'GÓI 1',100000,NULL,'2025-08-19 11:27:41','2025-08-19 11:27:41'),(68,69,'GÓI 1',100000,NULL,'2025-08-19 11:27:41','2025-08-19 11:27:41'),(69,70,'GÓI 1',100000,NULL,'2025-08-19 11:27:41','2025-08-19 11:27:41'),(70,71,'GÓI 1',100000,NULL,'2025-08-19 11:48:32','2025-08-19 11:48:32'),(71,71,'GÓI 2',200000,NULL,'2025-08-19 11:48:32','2025-08-19 11:48:32'),(72,72,'GÓI 1',100000,NULL,'2025-08-19 11:48:32','2025-08-19 11:48:32'),(73,72,'GÓI 2',200000,NULL,'2025-08-19 11:48:32','2025-08-19 11:48:32'),(74,73,'GÓI 1',100000,NULL,'2025-08-19 11:48:32','2025-08-19 11:48:32'),(75,73,'GÓI 2',200000,NULL,'2025-08-19 11:48:32','2025-08-19 11:48:32'),(76,74,'GÓI 1',100000,NULL,'2025-08-19 11:48:32','2025-08-19 11:48:32'),(77,74,'GÓI 2',200000,NULL,'2025-08-19 11:48:32','2025-08-19 11:48:32');
+/*!40000 ALTER TABLE `servicepackages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `services`
+--
+
+DROP TABLE IF EXISTS `services`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `services` (
+  `service_id` int NOT NULL AUTO_INCREMENT,
+  `service_name` varchar(255) NOT NULL,
+  `description` text,
+  `category_id` int DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`service_id`),
+  UNIQUE KEY `service_name` (`service_name`),
+  KEY `idx_service_category_id` (`category_id`),
+  CONSTRAINT `services_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `services`
+--
+
+LOCK TABLES `services` WRITE;
+/*!40000 ALTER TABLE `services` DISABLE KEYS */;
+INSERT INTO `services` VALUES (2,'Gói bảo dưỡng trọn đời: 4 năm vệ sinh máy lạnh (8 lần giá ưu đãi)',NULL,3,'2025-07-13 05:24:25','2025-07-13 05:25:53'),(3,'Bộ vật tư (5m ống đồng dày 0.7mm + dây điện đôi + ống nước mềm + băng keo + ốc vít)',NULL,3,'2025-07-13 05:25:53','2025-07-13 05:25:53'),(4,'Miễn phí công lắp đặt và hút chân không',NULL,3,'2025-07-13 05:25:53','2025-07-13 05:25:53'),(5,'Cặp EKE sơn tĩnh điện 45cm nặng 1,8kg',NULL,3,'2025-07-13 05:25:53','2025-07-13 05:25:53'),(6,'CB Panasonic 30A',NULL,3,'2025-07-13 05:25:53','2025-07-13 05:25:53'),(9,'Gói bảo hành 4 năm (2 năm chính hãng, 2 năm smarthome thực hiện)',NULL,NULL,'2025-07-13 11:12:55','2025-07-13 11:20:26'),(10,'Gói tiêu chuẩn, chỉ giao hàng',NULL,3,'2025-07-14 04:14:56','2025-07-14 04:14:56'),(11,'Gói tiêu chuẩn',NULL,NULL,'2025-07-14 04:14:56','2025-07-14 04:14:56');
+/*!40000 ALTER TABLE `services` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `password_hash` varchar(255) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
+  `full_name` varchar(100) DEFAULT NULL,
+  `phone_number` varchar(20) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `role_id` int DEFAULT NULL,
+  `login_method` varchar(50) NOT NULL DEFAULT 'traditional',
+  `google_sub_id` varchar(255) DEFAULT NULL,
+  `is_email_verified` tinyint(1) NOT NULL DEFAULT '0',
+  `is_profile_complete` tinyint(1) NOT NULL DEFAULT '0',
+  `avatar` varchar(255) DEFAULT NULL,
+  `district` varchar(255) DEFAULT NULL,
+  `province` varchar(255) DEFAULT NULL,
+  `house_number` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `google_sub_id` (`google_sub_id`),
+  KEY `role_id` (`role_id`),
+  CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'$2b$10$kFGhbnpC6rnVnfY0EAvfW.5f.zENRMJPYLlU91KW2QDvscgyKpXXq','admin@gmail.com','admin',NULL,'2025-07-03 04:46:44','2025-07-04 01:44:18',1,'traditional',NULL,0,0,NULL,NULL,NULL,NULL),(2,'$2b$10$t2bLnQV3UlSMlXi7HVeSeu5HwlWXHgA/xsaF/JFLEhRnuVyg9gLJ2','customer@gmail.com','customer','0376663767','2025-07-03 04:46:44','2025-08-19 14:31:55',2,'traditional',NULL,1,1,NULL,'Xã Chợ Gạo','Đồng Tháp','252, đường cùng rồi, ấp trứng vịt nở ra con gà, thị trấn không tên'),(13,'$2b$10$JwnEKUffYpjAcll5gmHR/OoFGFy7xS392/dXBDl.JbiSSNCu2dfHe','sinanju@gmail.com','sinanju','0559322385','2025-07-04 08:17:25','2025-08-15 15:25:08',2,'traditional',NULL,0,1,NULL,'Phường Cái Khế','Thành phố Cần Thơ','về bến nước cần thơ nhớ người xưa đó '),(14,NULL,'khoai.t0302@gmail.com','Ngọc Khoa','0559322385','2025-07-08 04:57:05','2025-08-16 05:44:09',2,'google','112812320001408877501',1,1,NULL,'Phường Hoàn Kiếm','Thành phố Hà Nội','252, đường cùng rồi, ấp trứng vịt nở ra con gà, thị trấn không tên'),(15,'$2b$10$YsOZ3shWZ8jpRHmPpMkB0uREAZUwa4nw1x3OLSaV8WKmQoTX1O3Fm','trainer@gmail.com','Khoa Ngọc',NULL,'2025-08-10 19:57:53','2025-08-10 19:57:53',2,'traditional',NULL,0,0,NULL,NULL,NULL,NULL),(16,'$2b$10$YDtJV/eYL9ILrr7FWKAq0u8buDrisRxvtmpzLr.hKJvZFCK/IofFK','sazabi@gmail.com','CHAR',NULL,'2025-08-19 09:01:49','2025-08-19 09:01:49',2,'traditional',NULL,0,0,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `variantoptionselections`
+--
+
+DROP TABLE IF EXISTS `variantoptionselections`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `variantoptionselections` (
+  `variant_id` int NOT NULL,
+  `option_value_id` int NOT NULL,
+  PRIMARY KEY (`variant_id`,`option_value_id`),
+  KEY `option_value_id` (`option_value_id`),
+  CONSTRAINT `variantoptionselections_ibfk_1` FOREIGN KEY (`variant_id`) REFERENCES `productvariants` (`variant_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `variantoptionselections_ibfk_2` FOREIGN KEY (`option_value_id`) REFERENCES `optionvalues` (`option_value_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `variantoptionselections`
+--
+
+LOCK TABLES `variantoptionselections` WRITE;
+/*!40000 ALTER TABLE `variantoptionselections` DISABLE KEYS */;
+INSERT INTO `variantoptionselections` VALUES (35,17),(36,18),(37,19),(38,20),(39,21),(40,22),(47,35),(48,35),(49,36),(50,39),(52,39),(53,40),(56,42),(56,44),(57,45),(58,46),(66,46),(59,47),(60,48),(61,49),(62,50),(63,51),(64,51),(63,52),(64,53),(65,54),(67,55),(68,56),(69,57),(70,57),(68,58),(69,58),(70,59),(71,60),(72,60),(73,61),(74,61),(71,62),(73,62),(72,63),(74,63);
+/*!40000 ALTER TABLE `variantoptionselections` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2025-11-09  9:19:43

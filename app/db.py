@@ -1,0 +1,23 @@
+from sqlalchemy import create_engine
+import os
+
+DB_USER = os.getenv("DB_USER", "root")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "root123")
+DB_HOST = os.getenv("DB_HOST", "localhost")
+DB_PORT = os.getenv("DB_PORT", "3306")
+DB_NAME = os.getenv("DB_NAME", "smarthome_db")
+
+DATABASE_URL = (
+    f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    "?charset=utf8mb4"
+)
+
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,       # keep connections alive
+    pool_recycle=3600,        # recycle connections every hour
+    pool_size=10,             # optional: connection pool size
+    max_overflow=20,          # optional: extra temporary connections
+    echo=False,               # show SQL queries when True
+    future=True               # SQLAlchemy 2.0 style
+)
