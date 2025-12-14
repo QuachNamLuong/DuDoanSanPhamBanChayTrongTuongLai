@@ -6,6 +6,7 @@ from app.features.schedule_training.handler import train_model_handler
 from app.features.schedule_training.scheduler import start_scheduler
 from app.logging import setup_logging
 
+
 app = FastAPI(title="My API")
 
 # Register routes

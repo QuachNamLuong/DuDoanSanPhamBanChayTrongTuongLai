@@ -213,3 +213,43 @@ AttributeError: module 'fastapi.logger' has no attribute 'info'
 2025-12-14 09:59:21,847 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
 2025-12-14 09:59:21,847 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
 2025-12-14 09:59:21,847 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 11:20:48,630 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 11:20:48,631 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 11:20:48,631 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 11:20:48,631 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 11:22:24,206 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 11:22:24,207 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 11:22:24,207 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 11:22:24,207 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 11:23:53,695 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 11:23:53,696 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 11:23:53,696 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 11:23:53,696 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 11:24:28,772 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 11:24:28,773 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 11:24:28,774 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 11:24:28,774 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 11:24:30,882 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 11:24:30,882 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 11:24:30,883 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 11:24:30,883 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 11:24:43,221 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 11:24:43,222 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 11:24:43,222 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 11:24:43,222 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 11:25:01,910 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 11:25:01,911 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 11:25:01,911 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 11:25:01,911 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 11:26:11,229 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 11:26:11,230 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 11:26:11,230 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 11:26:11,230 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 11:26:16,380 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 11:26:16,380 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 11:26:16,381 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 11:26:16,381 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 11:27:12,222 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 11:27:12,223 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 11:27:12,223 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 11:27:12,224 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
