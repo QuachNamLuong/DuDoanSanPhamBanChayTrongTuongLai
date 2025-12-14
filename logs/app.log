@@ -1,0 +1,215 @@
+2025-12-14 09:39:19,434 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:39:19,436 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:39:19,436 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:39:19,436 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:39:29,435 | INFO | apscheduler.executors.default | base.py:179 | Running job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:39:39 UTC)" (scheduled at 2025-12-14 09:39:29.434133+00:00)
+2025-12-14 09:40:17,508 | INFO | apscheduler.executors.default | base.py:203 | Job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:39:39 UTC)" executed successfully
+2025-12-14 09:40:17,510 | WARNING | apscheduler.executors.default | base.py:176 | Run time of job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:40:19 UTC)" was missed by 0:00:08.076004
+2025-12-14 09:40:19,896 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:40:19,897 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:40:19,897 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:40:19,897 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:40:29,898 | INFO | apscheduler.executors.default | base.py:179 | Running job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:40:39 UTC)" (scheduled at 2025-12-14 09:40:29.896808+00:00)
+2025-12-14 09:41:50,221 | ERROR | apscheduler.executors.default | base.py:195 | Job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:40:39 UTC)" raised an exception
+Traceback (most recent call last):
+  File "/home/luong/Projects/DuDoanSanPhamBanChayTrongTuongLai/.venv/lib/python3.12/site-packages/apscheduler/executors/base.py", line 181, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luong/Projects/DuDoanSanPhamBanChayTrongTuongLai/app/features/schedule_training/handler.py", line 9, in train_model_handler
+    model = train_model(data)
+            ^^^^^^^^^^^^^^^^^
+  File "/home/luong/Projects/DuDoanSanPhamBanChayTrongTuongLai/app/features/schedule_training/train.py", line 84, in train_model
+    logger.info("Model evaluation results:")
+    ^^^^^^^^^^^
+AttributeError: module 'fastapi.logger' has no attribute 'info'
+2025-12-14 09:41:50,228 | INFO | apscheduler.executors.default | base.py:179 | Running job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:41:59 UTC)" (scheduled at 2025-12-14 09:41:49.896808+00:00)
+2025-12-14 09:42:20,298 | ERROR | apscheduler.executors.default | base.py:195 | Job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:41:59 UTC)" raised an exception
+Traceback (most recent call last):
+  File "/home/luong/Projects/DuDoanSanPhamBanChayTrongTuongLai/.venv/lib/python3.12/site-packages/apscheduler/executors/base.py", line 181, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luong/Projects/DuDoanSanPhamBanChayTrongTuongLai/app/features/schedule_training/handler.py", line 9, in train_model_handler
+    model = train_model(data)
+            ^^^^^^^^^^^^^^^^^
+  File "/home/luong/Projects/DuDoanSanPhamBanChayTrongTuongLai/app/features/schedule_training/train.py", line 84, in train_model
+    logger.info("Model evaluation results:")
+    ^^^^^^^^^^^
+AttributeError: module 'fastapi.logger' has no attribute 'info'
+2025-12-14 09:42:20,301 | INFO | apscheduler.executors.default | base.py:179 | Running job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:42:29 UTC)" (scheduled at 2025-12-14 09:42:19.896808+00:00)
+2025-12-14 09:42:49,559 | ERROR | apscheduler.executors.default | base.py:195 | Job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:42:29 UTC)" raised an exception
+Traceback (most recent call last):
+  File "/home/luong/Projects/DuDoanSanPhamBanChayTrongTuongLai/.venv/lib/python3.12/site-packages/apscheduler/executors/base.py", line 181, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luong/Projects/DuDoanSanPhamBanChayTrongTuongLai/app/features/schedule_training/handler.py", line 9, in train_model_handler
+    model = train_model(data)
+            ^^^^^^^^^^^^^^^^^
+  File "/home/luong/Projects/DuDoanSanPhamBanChayTrongTuongLai/app/features/schedule_training/train.py", line 84, in train_model
+    logger.info("Model evaluation results:")
+    ^^^^^^^^^^^
+AttributeError: module 'fastapi.logger' has no attribute 'info'
+2025-12-14 09:42:52,414 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:42:52,415 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:42:52,415 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:42:52,415 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:43:19,741 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:43:19,742 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:43:19,742 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:43:19,742 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:43:24,380 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:43:24,381 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:43:24,381 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:43:24,381 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:44:07,838 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:44:07,839 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:44:07,839 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:44:07,840 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:45:36,979 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:45:36,980 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:45:36,981 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:45:36,981 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:45:50,281 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:45:50,281 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:45:50,282 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:45:50,282 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:47:32,840 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:47:32,841 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:47:32,841 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:47:32,841 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:47:34,925 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:47:34,925 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:47:34,925 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:47:34,925 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:47:45,140 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:47:45,140 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:47:45,140 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:47:45,141 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:48:08,127 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:48:08,128 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:48:08,129 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:48:08,129 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:48:11,534 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:48:11,535 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:48:11,537 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:48:11,540 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:48:16,095 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:48:16,096 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:48:16,096 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:48:16,096 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:48:24,586 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:48:24,587 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:48:24,588 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:48:24,588 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:50:04,650 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:50:04,651 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:50:04,651 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:50:04,651 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:50:06,682 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:50:06,682 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:50:06,683 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:50:06,683 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:50:16,683 | INFO | apscheduler.executors.default | base.py:179 | Running job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:50:26 UTC)" (scheduled at 2025-12-14 09:50:16.682131+00:00)
+2025-12-14 09:51:08,548 | ERROR | apscheduler.executors.default | base.py:195 | Job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:50:26 UTC)" raised an exception
+Traceback (most recent call last):
+  File "/home/luong/Projects/DuDoanSanPhamBanChayTrongTuongLai/.venv/lib/python3.12/site-packages/apscheduler/executors/base.py", line 181, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luong/Projects/DuDoanSanPhamBanChayTrongTuongLai/app/features/schedule_training/handler.py", line 9, in train_model_handler
+    model = train_model(data)
+            ^^^^^^^^^^^^^^^^^
+  File "/home/luong/Projects/DuDoanSanPhamBanChayTrongTuongLai/app/features/schedule_training/train.py", line 84, in train_model
+    logger.info("Model evaluation results:")
+    ^^^^^^^^^^^
+AttributeError: module 'fastapi.logger' has no attribute 'info'
+2025-12-14 09:51:08,550 | WARNING | apscheduler.executors.default | base.py:176 | Run time of job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:51:16 UTC)" was missed by 0:00:01.868018
+2025-12-14 09:51:16,683 | INFO | apscheduler.executors.default | base.py:179 | Running job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:51:26 UTC)" (scheduled at 2025-12-14 09:51:16.682131+00:00)
+2025-12-14 09:51:40,577 | ERROR | apscheduler.executors.default | base.py:195 | Job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:51:26 UTC)" raised an exception
+Traceback (most recent call last):
+  File "/home/luong/Projects/DuDoanSanPhamBanChayTrongTuongLai/.venv/lib/python3.12/site-packages/apscheduler/executors/base.py", line 181, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luong/Projects/DuDoanSanPhamBanChayTrongTuongLai/app/features/schedule_training/handler.py", line 9, in train_model_handler
+    model = train_model(data)
+            ^^^^^^^^^^^^^^^^^
+  File "/home/luong/Projects/DuDoanSanPhamBanChayTrongTuongLai/app/features/schedule_training/train.py", line 84, in train_model
+    logger.info("Model evaluation results:")
+    ^^^^^^^^^^^
+AttributeError: module 'fastapi.logger' has no attribute 'info'
+2025-12-14 09:51:40,579 | WARNING | apscheduler.executors.default | base.py:176 | Run time of job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:51:46 UTC)" was missed by 0:00:03.897528
+2025-12-14 09:51:42,871 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:51:42,872 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:51:42,872 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:51:42,872 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:52:31,767 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:52:31,768 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:52:31,768 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:52:31,768 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:52:42,430 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:52:42,431 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:52:42,431 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:52:42,431 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:53:22,932 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:53:22,934 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:53:22,935 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:53:22,935 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:55:32,764 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:55:32,766 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:55:32,767 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:55:32,767 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:55:35,066 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:55:35,066 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:55:35,066 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:55:35,067 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:55:45,067 | INFO | apscheduler.executors.default | base.py:179 | Running job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:55:55 UTC)" (scheduled at 2025-12-14 09:55:45.065995+00:00)
+2025-12-14 09:56:29,257 | INFO | app.features.schedule_training.train | train.py:86 | Model evaluation results:
+2025-12-14 09:56:29,258 | INFO | app.features.schedule_training.train | train.py:87 | MAE: 1.258822
+2025-12-14 09:56:29,258 | INFO | app.features.schedule_training.train | train.py:88 | MSE: 9.012614
+2025-12-14 09:56:29,258 | INFO | app.features.schedule_training.train | train.py:89 | RMSE: 3.002102
+2025-12-14 09:56:29,258 | INFO | app.features.schedule_training.train | train.py:90 | R² Score: 0.982298
+2025-12-14 09:56:29,259 | INFO | app.features.schedule_training.train | train.py:91 | Median AE: 0.521786
+2025-12-14 09:56:29,259 | INFO | app.features.schedule_training.train | train.py:92 | MAPE (%): 5.40
+2025-12-14 09:56:29,259 | INFO | app.features.schedule_training.train | train.py:93 | SMAPE (%): 4.85
+2025-12-14 09:56:29,296 | INFO | apscheduler.executors.default | base.py:203 | Job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:55:55 UTC)" executed successfully
+2025-12-14 09:56:29,297 | WARNING | apscheduler.executors.default | base.py:176 | Run time of job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:56:35 UTC)" was missed by 0:00:04.231412
+2025-12-14 09:56:35,066 | INFO | apscheduler.executors.default | base.py:179 | Running job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:56:45 UTC)" (scheduled at 2025-12-14 09:56:35.065995+00:00)
+2025-12-14 09:57:17,387 | INFO | app.features.schedule_training.train | train.py:86 | Model evaluation results:
+2025-12-14 09:57:17,387 | INFO | app.features.schedule_training.train | train.py:87 | MAE: 1.161925
+2025-12-14 09:57:17,387 | INFO | app.features.schedule_training.train | train.py:88 | MSE: 7.146087
+2025-12-14 09:57:17,387 | INFO | app.features.schedule_training.train | train.py:89 | RMSE: 2.673217
+2025-12-14 09:57:17,387 | INFO | app.features.schedule_training.train | train.py:90 | R² Score: 0.985657
+2025-12-14 09:57:17,387 | INFO | app.features.schedule_training.train | train.py:91 | Median AE: 0.480258
+2025-12-14 09:57:17,388 | INFO | app.features.schedule_training.train | train.py:92 | MAPE (%): 4.84
+2025-12-14 09:57:17,388 | INFO | app.features.schedule_training.train | train.py:93 | SMAPE (%): 4.57
+2025-12-14 09:57:17,415 | INFO | apscheduler.executors.default | base.py:203 | Job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:56:45 UTC)" executed successfully
+2025-12-14 09:57:17,416 | WARNING | apscheduler.executors.default | base.py:176 | Run time of job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:57:25 UTC)" was missed by 0:00:02.350243
+2025-12-14 09:57:25,066 | INFO | apscheduler.executors.default | base.py:179 | Running job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:57:35 UTC)" (scheduled at 2025-12-14 09:57:25.065995+00:00)
+2025-12-14 09:58:07,674 | INFO | app.features.schedule_training.train | train.py:86 | Model evaluation results:
+2025-12-14 09:58:07,674 | INFO | app.features.schedule_training.train | train.py:87 | MAE: 1.256325
+2025-12-14 09:58:07,674 | INFO | app.features.schedule_training.train | train.py:88 | MSE: 11.006988
+2025-12-14 09:58:07,675 | INFO | app.features.schedule_training.train | train.py:89 | RMSE: 3.317678
+2025-12-14 09:58:07,675 | INFO | app.features.schedule_training.train | train.py:90 | R² Score: 0.979145
+2025-12-14 09:58:07,675 | INFO | app.features.schedule_training.train | train.py:91 | Median AE: 0.525826
+2025-12-14 09:58:07,675 | INFO | app.features.schedule_training.train | train.py:92 | MAPE (%): 5.19
+2025-12-14 09:58:07,675 | INFO | app.features.schedule_training.train | train.py:93 | SMAPE (%): 4.80
+2025-12-14 09:58:07,699 | INFO | apscheduler.executors.default | base.py:203 | Job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:57:35 UTC)" executed successfully
+2025-12-14 09:58:07,700 | WARNING | apscheduler.executors.default | base.py:176 | Run time of job "train_model_handler (trigger: interval[0:00:10], next run at: 2025-12-14 09:58:15 UTC)" was missed by 0:00:02.634556
+2025-12-14 09:58:10,452 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:58:10,452 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:58:10,452 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:58:10,452 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:58:12,587 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:58:12,587 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:58:12,588 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:58:12,588 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:58:23,767 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:58:23,768 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:58:23,768 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:58:23,768 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:58:36,674 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:58:36,675 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:58:36,675 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:58:36,675 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started
+2025-12-14 09:59:21,846 | INFO | apscheduler.scheduler | base.py:507 | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-12-14 09:59:21,847 | INFO | apscheduler.scheduler | base.py:1090 | Added job "train_model_handler" to job store "default"
+2025-12-14 09:59:21,847 | INFO | apscheduler.scheduler | base.py:214 | Scheduler started
+2025-12-14 09:59:21,847 | INFO | app.features.schedule_training.scheduler | scheduler.py:14 | Scheduler started

@@ -1,10 +1,8 @@
-# features/predict/router.py
 from fastapi import APIRouter
-from .schemas import PredictRequest, PredictResponse
-from .controller import handle_prediction
+from .service import predict_next_quarter
 
-router = APIRouter(prefix="/predict", tags=["prediction"])
+router = APIRouter()
 
-@router.get("/", response_model=PredictResponse)
-def predict_orders(payload: PredictRequest):
-    return handle_prediction(payload)
+@router.get("/predict", tags=["Predict"])
+def predict():
+    return predict_next_quarter()
